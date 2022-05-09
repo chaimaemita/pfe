@@ -4,10 +4,15 @@ E-veto est une application de vente en ligne vétérinaire (l’alimentation pou
 
 Exigences technologiques :
 •	Bootstrap, HTML et CSS pour le front
+
 •	JavaScript pour la validation des formulaires, modal ...
+
 •	MVC
+
 •	PHP OOP pour le back-end
+
 •	Base de donnée relationnelle pour le type de base de donnée (MySQL)
+
 
 Partie de développeur :
 •	Autant que développeur back-end je réalise le back-end du formulaire d'inscription et CRUD
