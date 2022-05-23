@@ -1,7 +1,7 @@
 # pfe
 Contexte de projet :
 
-E-veto est une application de vente en ligne vétérinaire (l’alimentation pour votre animal) ou bien adopter un animal domestique.
+E-PET est une application de vente en ligne vétérinaire (l’alimentation pour votre animal) ou bien adopter un animal domestique.
 
 Exigences technologiques :
 
