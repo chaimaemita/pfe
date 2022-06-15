@@ -44,7 +44,7 @@
                   <h5 class="card-title">Seller-zone</h5>
                   <p class="card-text"> Click the button</p>
                   <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <a href="echo BASE_URL;?>seller"><input class="btn btn-outline-primary" type="button" value="Seller" ></a>
+                    <a href="<?php echo BASE_URL;?>seller"><input class="btn btn-outline-primary" type="button" value="Seller" ></a>
                 </div> 
                 </div>
             </div>

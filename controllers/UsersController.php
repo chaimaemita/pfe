@@ -5,18 +5,24 @@ class UsersController {
 
 	public function auth(){
 		if(isset($_POST['submit'])){
+			$data['id'] = $_POST['id'];
 			$data['email'] = $_POST['email'];
+			$data['user_name'] = $_POST['username'];
 			$result = User::login($data);
-			// print_r($result);
-			// die();
+
+			
 			if($result->email === $_POST['email'] && password_verify($_POST['mdp'],$result->password)){
 				$_SESSION['logged'] = true;
+				$_SESSION['id'] = $result->id;
 				$_SESSION['email'] = $result->email;
+				$_SESSION['username'] = $result->user_name;
+				$_SESSION['phone'] = $result->phone;
+				$_SESSION['date'] = $result->date;
 				 Redirect::to('choose');
 			}else{
 				Session::set('error','Pseudo ou mot de passe est incorrect');
 				Redirect::to('connexion');
-				// echo 'hello';
+				
 			}
 		}
 	}

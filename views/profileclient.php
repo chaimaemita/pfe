@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,14 +20,10 @@
 
         body {
             width: 100%;
-
+            height: 100vh;
             display: flex;
             flex-direction: column;
             background-color: #DFEBE9;
-        }
-
-        #cards {
-            width: 18rem;
         }
 
         @media screen and (max-width: 472px) {
@@ -35,32 +32,10 @@
                 flex-direction: column;
             }
 
-            #home {
-                display: flex;
-                flex-direction: column;
-                margin-top: 60px;
-                margin-bottom: 100%;
-            }
-
-            #img {
-                display: none;
-            }
-
-            #parag {
-                width: 100%;
-                font-size: 10%;
-                padding: 0 !important;
-            }
-
-            #cards {
-                margin-top: 10%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column !important;
-                width: 100%;
-
-            }
+           #profile{
+               display: flex;
+               flex-direction: column !important;
+           }
         }
     </style>
 </head>
@@ -70,6 +45,7 @@
         style="background-color: #f7f1e3;  border: 0px solid; padding: 10px; box-shadow: 5px 10px 8px #888888;">
         <div class="container-fluid">
             <a href="index.html"><img src="logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
+            
             <a href="index.html" style="text-decoration: none; color:black; font-weight: bold;">Accueil</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
@@ -85,7 +61,7 @@
                 <div class="offcanvas-body">
                     <a href="<?php echo BASE_URL;?>home" class="d-flex justify-content-center align-items-center"><img src="logo.png"
                             alt="logo"></a>
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item ps-3 pb-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>petsposts"><i
                                     class="bi bi-file-earmark-post" style="padding-right: 3%;"></i>Posts</a></li>
                         <li class="nav-item ps-3 pb-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>shop"><i class="bi bi-shop"
@@ -100,49 +76,37 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid" style="background-color: #DFEBE9; padding: 10%;" id="scrollspyHeading1">
-        <div class="d-flex justify-content-center align-items-center flex-row" id="home"
-            style="padding: 0 5%; border: 1px solid #DFEBE9; padding: 10px; box-shadow: 5px 10px 18px #888888; border-radius: 5px;">
+    <div class="container-fluid" style="padding: 6% 10%;">
+        <div class="d-flex justify-content-between align-items-center flex-row" id="profile">
             <div class="">
-                <img src="needs.png" alt="" style="height: 350px;" id="img">
+                <div class="card" style="width: 18rem;">
+                    <img src="profileseller.png" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Client</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><i class="bi bi-envelope"></i>:E-mail</li>
+                        <li class="list-group-item"><i class="bi bi-telephone"></i>:telephone</li>
+                        <li class="list-group-item"><i class="bi bi-calendar"></i>:date</li>
+                    </ul>
+                    <input type="button" value="edit your profile" style="background-color: lightblue; border: none;">
+                </div>
             </div>
-            <div class="d-flex flex-column">
-                <p class="w-75" id="parag" style="font-size: 18px; padding-left: 20%;"><span
-                        class="fw-bold">E-pet.com</span> is one of moroccan's leading online pet
-                    stores. offering the highets quality over-the-counter pet
-                    medications. We understand the special bond
-                    between you and your pet and take their health and
-                    well-being very seriously. We hope to become your
-                    favorite 1-stop online pet store, where you find quality
-                    products at unbeatable prices.
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid d-flex justify-content-center align-items-center flex-row"
-        style="height: 100vh; width: 100%;" id="cards">
-        <div class="card d-flex justify-content-center align-items-center">
-            <img src="puppy.webp" class="card-img-top" alt="...">
-            <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                <h5 class="card-title">JOE <i class="bi bi-heart"></i></h5>
-                <p class="card-text text-center">Hello there can you adopt me. I have no home.</p>
-                <a href="petsposts.html" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-            </div>
-        </div>
-        <div class="card d-flex justify-content-center align-items-center">
-            <img src="fluffy.webp" class="card-img-top" alt="...">
-            <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                <h5 class="card-title">LOOLOO <i class="bi bi-heart-fill"></i></h5>
-                <p class="card-text text-center">Hello there can you adopt me. I have no home.</p>
-                <a href="petsposts.html" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-            </div>
-        </div>
-        <div class="card d-flex justify-content-center align-items-center">
-            <img src="dog.jpg" class="card-img-top" alt="...">
-            <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                <h5 class="card-title">COCO <i class="bi bi-suit-heart"></i></h5>
-                <p class="card-text">Hello there can you adopt me. I have no home.</p>
-                <a href="petsposts.html" class="btn w-100" style="background-color: #bfe6ba;">See</a>
+
+            <div class="" style="background-color: white; padding: 10% 5%; padding-bottom: 0;">
+                <h3>If you want to edit your profile</h3>
+                <form action="" method="post" class="d-flex justify-content-center flex-column" style="padding: 5%;">
+                    <label for="name">username</label>
+                    <input type="text" name="username" id="name">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" id="email">
+                    <label for="phone">Phone</label>
+                    <input type="number" name="phone" id="phone">
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="date">
+                    <input type="submit" value="UPDATE"
+                        style="background-color: lightblue; border: none; margin-top: 10px;">
+                </form>
             </div>
         </div>
     </div>
