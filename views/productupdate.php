@@ -3,20 +3,16 @@
 
     $exitUser = new UsersController();
     $user = $exitUser->getPost($id);
-    
-            
-    $exitPet = new PetController();
-    $pet = $exitPet->getOnePet();
-            // echo "hello";
-    if(isset($_POST['update'])){
-        $exitPet = new PetController();
-        $exitPet->updatePet();
+
+    if (isset($_POST['idpro'])) {
+        $exitpro = new productController();
+        $pro = $exitpro->getOneProduct();
     }
-
-    
-
+    if (isset($_POST['updatepro'])) {
+        $exitpro = new productController();
+        $exitpro->updatePro();
+    }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,52 +116,61 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid" style="padding: 6% 10%;">
-        <div class="d-flex justify-content-center align-items-center flex-row" id="profile">
-            <div class="">
-            <div class="card" style="width: 18rem; margin-right: 50px;" id="profile">
-            <?php foreach($user as $users) : ?>
-                    <img src="public/img/profileseller.png" class="card-img-top" alt="">
-                    <div class="card-header text-center">
-                        <h5 class="card-title"><?php echo $users['user_name']; ?></h5>
+    <div class="container-fluid" style="padding: 10% 10%;">
+        <div class="row" id="profile">
+            <div class="col-md-4 mx-auto">
+                <div class="card" style="width: 18rem; margin-right: 50px;" id="profile">
+                    <?php foreach($user as $users) : ?>
+                        <img src="public/img/profileseller.png" class="card-img-top" alt="">
+                        <div class="card-header text-center">
+                            <h5 class="card-title"><?php echo $users['user_name']; ?></h5>
+                        </div>
+                        <div class="card-body">                    
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><i class="bi bi-envelope"></i>: <?php echo $users['email']; ?></li>
+                            <li class="list-group-item"><i class="bi bi-telephone"></i>: <?php echo $users['phone']; ?></li>
+                            <li class="list-group-item"><i class="bi bi-calendar"></i>: <?php echo $users['date']; ?></li>
+                        </ul>
                     </div>
-                    <div class="card-body">                    
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><i class="bi bi-envelope"></i>: <?php echo $users['email']; ?></li>
-                        <li class="list-group-item"><i class="bi bi-telephone"></i>: <?php echo $users['phone']; ?></li>
-                        <li class="list-group-item"><i class="bi bi-calendar"></i>: <?php echo $users['date']; ?></li>
-                    </ul>
-                </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
-            <div class="card" style="background-color: white; padding: 10% 5%; padding-bottom: 0; border-radius: 5px;">
-            <div class="card-header" style="background-color: lightblue;">
-                <h3>🦄 Edit a pet's post</h3>
-            </div>    
-            <div class="card-body">
-                    <form action="" method="POST" class="d-flex justify-content-center flex-column" style="padding: 5%;">
-                        <input type="hidden" name="id" value="<?php echo $pet->id; ?>">
-                        <div class="form-group form-floating mb-3">
-                            <input class="form-control" type="text" name="nickname" id="floatingInput" placeholder="xxxxx" value="<?php echo $pet->nick_name;?>">   
-                            <label for="floatingInput">🐾nickname</label>
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4>🦄 Edit a product's post</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="POST" class="d-flex justify-content-center flex-column" style="padding: 5%;">
+                            <input type="hidden" name="idpro" value="<?php echo $pro->idpro; ?>">
+                            <div class="form-group form-floating mb-3">
+                                <input class="form-control" type="text" name="proname" id="floatingInput" placeholder="xxxxx" value="<?php echo $pro->proname;?>">   
+                                <label for="floatingInput">🐾Product's name</label>
+                            </div>
+                            <div class="form-group form-floating mb-3">
+                                <input  class="form-control" type="text" name="price" id="floatingInput" placeholder="xxxxx" value="<?php echo $pro->price;?>">    
+                                <label for="dfloatingInput">🐾Product's Price</label>
+                            </div>
+                            <div class="form-floating">
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="categorie">
+                                <option selected>Categorie</option>
+                                <option value="1" <?php echo $pro->categorie ? 'selected' : ''; ?>>food</option>
+                                <option value="2" <?php echo $pro->categorie ? 'selected' : ''; ?>>toy</option>
+                                <option value="3" <?php echo $pro->categorie ? 'selected' : ''; ?>>other</option>
+                            </select>
+                            <label for="floatingSelect">🐾Product</label>
                         </div>
-                        <div class="form-group form-floating mb-3">
-                            <input  class="form-control" type="text" name="disc" id="floatingInput" placeholder="xxxxx" value="<?php echo $pet->about_pet;?>">    
-                            <label for="dfloatingInput">🐾about the pet</label>
-                        </div>
-                        <div class="form-group form-floating">
-                            <input class="form-control" type="date" name="date" id="floatingInput" placeholder="xxxxx" value="<?php echo $pet->age;?>">
-                            <label for="floatingInput">🐾age</label>
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="submit" name="update" value="Add to your list" style="background-color: lightblue; border: none; margin-top: 10px;">
-                        </div>
-                    </form>
+                            <div class="form-group">
+                                <input class="form-control" type="submit" name="updatepro" value="Add to your list" style="background-color: lightblue; border: none; margin-top: 10px;">
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            </div>
+       
         </div>
     </div>
+    
 </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

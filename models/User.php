@@ -32,6 +32,54 @@ class User{
 		$stmt = null;
 	}
 
+	static public function getAll(){
+		$stmt = DB::connect()->prepare('SELECT * FROM user');
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+		$stmt = null;
+	}
+
+	public function getUser($data){
+		$id = $data['id'];
+		$stmt = DB::connect()->prepare('SELECT * FROM user WHERE id = :id');
+		$stmt->bindParam(':id', $id);
+		$stmt->execute();
+		$get = $stmt->fetch(PDO::FETCH_ASSOC);
+		return $get;
+	}
+	
+	public function getPost($data){
+		$id = $data['id'];
+		$stmt = DB::connect()->prepare('SELECT * FROM user WHERE id = :id');
+		$stmt->bindParam(':id', $id);
+		$stmt->execute();
+		$get = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $get;
+	}
+
+	static public function update($data){
+		$stmt = DB::connect()->prepare('UPDATE `user` SET 
+			user_name = :username,
+			email = :email,
+			phone = :phone,
+			date = :date
+			WHERE id = :id');
+		$stmt->bindParam(':username',$data['username']);
+		$stmt->bindParam(':email',$data['email']);
+		$stmt->bindParam(':phone',$data['phone']);
+		$stmt->bindParam(':date',$data['date']);
+		$stmt->bindParam(':id',$data['id']);
+
+		if ($stmt->execute()) {
+			return 'ok';
+		}else {
+			return 'error';
+		}
+		$stmt->close();
+		$stmt = null;
+	}
+
 }
 
  ?>

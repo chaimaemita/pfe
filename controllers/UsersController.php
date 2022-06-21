@@ -10,7 +10,6 @@ class UsersController {
 			$data['user_name'] = $_POST['username'];
 			$result = User::login($data);
 
-			
 			if($result->email === $_POST['email'] && password_verify($_POST['mdp'],$result->password)){
 				$_SESSION['logged'] = true;
 				$_SESSION['id'] = $result->id;
@@ -50,9 +49,65 @@ class UsersController {
 			}
 		}
 	}
+	public function updateUser(){
+		if (isset($_POST['update'])) {
+			$data = array(
+				'id' => $_POST['id'],
+				'username' => $_POST['username'],
+				'email' => 	$_POST['email'],
+				'phone' => 	$_POST['phone'],	
+				'date' => 	$_POST['date']
+			);
+			$result = User::update($data);
+			if ($result = 'ok') {
+				session::set('success','Employé Modifié');
+				Redirect::to('profileseller');
+			}else {
+				echo $result;
+			}
+
+		}
+	}
+	public function updateUserclient(){
+		if (isset($_POST['updateclient'])) {
+			$data = array(
+				'id' => $_POST['id'],
+				'username' => $_POST['username'],
+				'email' => 	$_POST['email'],
+				'phone' => 	$_POST['phone'],	
+				'date' => 	$_POST['date']
+			);
+			$result = User::update($data);
+			if ($result = 'ok') {
+				session::set('success','Employé Modifié');
+				Redirect::to('profileclient');
+			}else {
+				echo $result;
+			}
+
+		}
+	}
 
 	static public function logout(){
 		session_destroy();
+	}
+
+	public function getUser($id){
+		$data = array(
+			'id' => $id
+		);
+		$dataUser = new User();
+		$dataUser = $dataUser->getUser($data);
+		return $dataUser;
+	}
+	
+	public function getPost($id){
+		$data = array(
+			'id' => $id
+		);
+		$dataUser = new User();
+		$dataUser = $dataUser->getPost($data);
+		return $dataUser;
 	}
 
 

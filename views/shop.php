@@ -1,3 +1,10 @@
+<?php
+require_once 'controllers/UsersController.php';
+$id = $_SESSION["id"]; 
+
+$data = new productController();
+$pro = $data->getAllProducts();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,9 +57,9 @@
     <nav class="navbar navbar-light fixed-top" id="visible"
         style="background-color: #f7f1e3;  border: 0px solid; padding: 10px; box-shadow: 5px 10px 8px #888888;">
         <div class="container-fluid">
-            <a href="index.html"><img src="logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
+            <a href="<?php echo BASE_URL;?>home"><img src="public/img/logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
             
-            <a href="profileclient.html" style="text-decoration: none; color:black; font-weight: bold;">Client's name</a>
+            <a href="<?php echo BASE_URL;?>profileclient" style="text-decoration: none; color:black; font-weight: bold;"><?php echo $_SESSION['username']; ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -65,9 +72,11 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <a href="<?php echo BASE_URL;?>home" class="d-flex justify-content-center align-items-center"><img src="logo.png"
+                    <a href="<?php echo BASE_URL;?>home" class="d-flex justify-content-center align-items-center"><img src="public/img/logo.png"
                             alt="logo"></a>
                             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item ps-3 pb-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>client"><i
+                                    class="bi bi-house-fill" style="padding-right: 3%;"></i>Accueil</a></li>
                         <li class="nav-item ps-3 pb-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>petsposts"><i
                                     class="bi bi-file-earmark-post" style="padding-right: 3%;"></i>Posts</a></li>
                         <li class="nav-item ps-3 pb-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>shop"><i class="bi bi-shop"
@@ -83,28 +92,46 @@
         </div>
     </nav>
     <div class="container-fluid" style="margin-top: 15%;">
-        <h3 id="welcome">Welcome <span>Client's name</span>. <br> All your needs are here, in our shop.</h3>
+        <h3 id="welcome">Welcome <span><?php echo $_SESSION['username']; ?>👋</span>. <br> All your needs are here, in our shop 🛍.</h3>
 
-        <table class="table table-striped" style="background-color: #bfe6ba; margin-top: 3%;">
-            <tr class="text-center" style="vertical-align:middle;" id="table">
-                <th><img src="wetfood.jpg" alt="" width="60"></th>
-                <th>Product's name</th>
-                <th>Price</th>
-                <th><i class="bi bi-eye"></i></th>
-                <th>Buy</th>
+        <table class="table table-striped" style="background-color: #bfe6ba; margin-top: 3%;" id="table">
+            <tr class="text-center">
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price(Dh)</th>
+                        <th>Categorie</th>
+                        <th>Options</th>
             </tr>
+            <?php foreach($pro as $pros) :?>
+                <input type="hidden" name="id" value="<?php echo $pros['idpro']; ?>">
+            <tr class="text-center" style="vertical-align:middle;" id="table">
+                <th><img src="public/img/wetfood.jpg" alt="" width="60"></th>
+                <th><?php echo $pros['proname'] ;?></th>
+                <th><?php echo $pros['price']; ?></th>
+                <th><?php if($pros['categorie'] == 1 ){ echo'<span class="badge bg-secondary">food</span>';} elseif($pros['categorie'] == 2){ echo'<span class="badge bg-secondary">toy</span>';}elseif($pros['categorie'] == 3) {echo '<span class="badge bg-secondary">other</span>';};
+						      ;?></th>
+
+                <th><a href="">Buy</a></th>
+            </tr>
+            <?php endforeach; ?>
         </table>
     </div>
     <div  class="container-fluid" id="card">
+    <?php foreach($pro as $prod) :?>
+        <input type="hidden" name="id" value="<?php echo $prod['idpro']; ?>">
+
         <div class="card d-flex justify-content-center align-items-center">
-            <img src="wetfood.jpg" class="card-img-top" alt="..." width="18rem">
+            <img src="public/img/wetfood.jpg" class="card-img-top" alt="..." width="18rem">
             <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                <h5 class="card-title">Product's name></h5>
-                <p>Price</p>
+                <h5 class="card-title"><?php echo $prod['proname'] ;?></h5>
+                <p><?php echo $prod['price']; ?></p>
+                <p><?php if($prod['categorie'] == 1 ){ echo'<span class="badge bg-secondary">food</span>';} elseif($prod['categorie'] == 2){ echo'<span class="badge bg-secondary">toy</span>';}elseif($prod['categorie'] == 3) {echo '<span class="badge bg-secondary">other</span>';};
+				?></p>
                 <a href="">seller's name</a>
                 <a href="#" class="btn w-100" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     style="background-color: #bfe6ba;">BUY</a>
             </div>
+            <?php endforeach; ?>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

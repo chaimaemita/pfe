@@ -3,6 +3,11 @@
 		$newPet = new PetController();
 		$newPet->addPet();
 	}
+
+    if(isset($_POST['addproduct'])){
+		$newProduct = new productController();
+        $newProduct->addProduct();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +74,7 @@
                 <li class="nav-item pe-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>seller"><i class="bi bi-house"></i>Dashbord</a></li>
                 <li class="nav-item ps-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>postseller"><i class="bi bi-pencil-square"></i>Post</a></li>
             </ul>
-           <a href="index.html"><img src="logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
+           <a href="index.html"><img src="public/img/logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
             <ul class="d-flex justify-content-between" style="text-decoration: none; list-style: none;">
                 <li class="nav-item pe-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>profileseller"><i class="bi bi-file-person-fill"></i>Profile</a></li>
                 <li class="ps-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>logout" style=" border-radius: 5px; padding: 5px;" id="logout">LOG OUT</a></li>
@@ -80,7 +85,7 @@
     <nav class="navbar navbar-light fixed-top" id="visible"
     style="background-color: lightblue;  border: 0px solid; padding: 10px; box-shadow: 5px 10px 8px #888888;">
     <div class="container-fluid">
-        <a href="index.html"><img src="logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
+        <a href="index.html"><img src="public/img/logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
         <h5>Seller's name</h5>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar">
@@ -112,46 +117,82 @@
         <div class="d-flex justify-content-center align-items-center flex-row" id="profile">
             <div class="">
                 <div class="card" style="width: 18rem; margin-right: 50px;" id="profile">
-                    <img src="profileseller.png" class="card-img-top" alt="">
+                <img src="public/img/profileseller.png" class="card-img-top" alt="">
+                <div class="card-header">
+                    <h5 class="card-title"><?php echo $_SESSION['username']; ?></h5>
+                </div>
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $_SESSION['username']; ?></h5>
-                    </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><i class="bi bi-envelope"></i>: <?php echo $_SESSION['email']; ?></li>
                         <li class="list-group-item"><i class="bi bi-telephone"></i>: <?php echo $_SESSION['phone']; ?></li>
                     </ul>
                 </div>
+                </div>
             </div>
-            <div class="card" style="background-color: white; padding: 10% 5%; padding-bottom: 0; border-radius: 5px;">
-            <div class="card-header" style="background-color: lightblue;">
-                <h3 style="background-color: lightblue;">Post a new pet to adopt</h3>
-            </div>    
-           <div class="card-body">
-                <form action="" method="post" class="d-flex justify-content-center flex-column" style="padding: 5%;">
-                    <div class="form-group form-floating mb-3">
-                        <input class="form-control" type="text" name="nickname" id="floatingInput" placeholder="xxxxx">  
-                        <label for="floatingInput">🦄nickname</label> 
-                    </div>
-                    <div class="form-group form-floating mb-3">
-                        <input  class="form-control" type="text" name="disc" id="floatingInput" placeholder="xxxxx">  
-                        <label for="floatingInput">🐾about the pet</label>  
-                    </div>
-                    <div class="form-group form-floating">
-                        <input class="form-control" type="text" name="date" id="floatingInput" placeholder="xxxxx">
-                        <label for="floatingInput">🐾age</label>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" type="submit" name="add" value="Add to your list" style="background-color: lightblue; border: none; margin-top: 10px;">
-                    </div>
-                </form>
-           </div>
-                
+            <div class="card" style="padding: 10% 5%; padding-bottom: 0; border-radius: 5px;">
+                <div class="card-header" style="background-color: lightblue;">
+                    <h3 style="background-color: lightblue;">🦄 Post a new pet to adopt</h3>
+                </div>    
+                <div class="card-body">
+                    <form action="" method="post" class="d-flex justify-content-center flex-column" style="padding: 5%;">
+                        <div class="form-group form-floating mb-3">
+                            <input class="form-control" type="text" name="nickname" id="floatingInput" placeholder="xxxxx">  
+                            <label for="floatingInput">🐾nickname</label> 
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input  class="form-control" type="text" name="disc" id="floatingInput" placeholder="xxxxx">  
+                            <label for="floatingInput">🐾about the pet</label>  
+                        </div>
+                        <div class="form-group form-floating">
+                            <input class="form-control" type="text" name="date" id="floatingInput" placeholder="xxxxx">
+                            <label for="floatingInput">🐾age</label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="submit" name="add" value="Add to your list" style="background-color: lightblue; border: none; margin-top: 10px;">
+                        </div>
+                    </form>
+                </div> 
             </div>
         </div>
     </div>
-    
+    <div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header text-center" style="background-color: lightblue;">
+                    <h3 style="background-color: lightblue;">🦄 Post a product</h3>
+                </div>    
+                <div class="card-body">
+                    <form action="" method="post" class="d-flex justify-content-center flex-column" style="padding: 5%;">
+                        <div class="form-group form-floating mb-3">
+                            <input class="form-control" type="text" name="proname" id="floatingInput" placeholder="xxxxx">  
+                            <label for="floatingInput">🐾Product's name</label> 
+                        </div>
+                        <div class="form-group form-floating mb-3">
+                            <input  class="form-control" type="text" name="price" id="floatingInput" placeholder="xxxxx">  
+                            <label for="floatingInput">🐾Price</label>  
+                        </div>
+                        <div class="form-floating">
+                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="categorie">
+                                <option selected>Categorie</option>
+                                <option value="1">food</option>
+                                <option value="2">toy</option>
+                                <option value="3">other</option>
+                            </select>
+                            <label for="floatingSelect">🐾Product</label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="submit" name="addproduct" value="Add to your list" style="background-color: lightblue; border: none; margin-top: 10px;">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
     
+</div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,8 +1,14 @@
 <?php 
     require_once 'controllers/UsersController.php';
-    $id = $_SESSION["id"];    
+    $id = $_SESSION["id"];  
+
     $data = new PetController();
     $pet = $data->getAllPet();
+    $petnum=count($pet);
+
+    $data = new productController();
+    $pro = $data->getAllProduct();
+    $pronum=count($pro);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,7 +100,7 @@
                 <li class="nav-item pe-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>seller"><i class="bi bi-house"></i>Dashbord</a></li>
                 <li class="nav-item ps-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>postseller"><i class="bi bi-pencil-square"></i>Post</a></li>
             </ul>
-           <a href="index.html"><img src="logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
+           <a href="<?php echo BASE_URL;?>home"><img src="public/img/logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
             <ul class="d-flex justify-content-between" style="text-decoration: none; list-style: none;">
                 <li class="nav-item pe-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>profileseller"><i class="bi bi-file-person-fill"></i>Profile</a></li>
                 <li class="ps-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>logout" style=" border-radius: 5px; padding: 5px;" id="logout">LOG OUT</a></li>
@@ -104,7 +110,7 @@
     <nav class="navbar navbar-light fixed-top" style="background-color: lightblue;  border: 0px solid; padding: 10px; box-shadow: 5px 10px 8px #888888;"
         id="visible">
         <div class="container-fluid">
-            <a href="index.html"><img src="logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
+            <a href="index.html"><img src="public/img/logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
             <h5>Seller's name</h5>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -127,198 +133,177 @@
           </div>
         </div>
       </nav>
-    <div class="row" style="padding: 10% 10%; padding-bottom: 50px;">
-        <div class="container-fluid">
-        <div class="d-flex flex-column" id="cards">
-            <div class="d-flex justify-content-center align-items-center flex-row  mx-auto" id="clrs">
-                        <div style="width: 250px; border-radius: 5px; background-color: #F5907C;">
-                            <div class="fs-1 ps-3">
-                                <i class="bi bi-person"></i>  
-                                <p class="fs-5">Clients</p>    
+    <div class="container" style="padding: 10% 10%; padding-bottom: 50px;">
+        <div class="row" id="cards">
+            <div class="col-md-4 mx-auto" id="clrs">
+                <div style="width: 100%; border-radius: 5px; background-color: #F5907C;">
+                    <div class="fs-1 ps-3">
+                        <i class="bi bi-basket"></i>  
+                        <p class="fs-5">Products</p>    
+                    </div>
+                    <div class="d-flex flex-column align-items-end ms-6">       
+                    <p class="fs-5 pe-3"><?php echo $pronum;?></p>    
+                    </div>  
+                </div>
+            </div>
+            <div class="col-md-4 mx-auto">
+                <div style="width: 100%; border-radius: 5px; background-color: #FFBE6E;">
+                    <div class="fs-1 ps-3">
+                        <i class="bi bi-file-earmark-richtext"></i> 
+                        <p class="fs-5">posts</p>            
+                    </div>                
+                    <div class="d-flex flex-column align-items-end ms-6">    
+                        <p class="fs-5 pe-3"><?php echo $petnum; ?></p>       
+                    </div>        
+                </div>
+            </div>      
+            <div class="col-md-4 mx-auto">
+                <div style="width: 100%; border-radius: 5px;background-color: lightblue;">
+                    <div class="fs-1 ps-3">
+                        <i class="bi bi-person"></i> 
+                        <p class="fs-5"><?php echo $_SESSION['username']; ?></p>            
+                    </div>                
+                    <div class="d-flex flex-column align-items-end ms-6">    
+                        <p class="fs-5 pe-3">SELLER</p>       
+                    </div>        
+                </div>
+            </div>       
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div class="card border rounded" style=" width: 100%;" id="info">
+                <div class="card-header">
+                    <h4>PETS</h4>
+                    <a href="<?php echo BASE_URL;?>postseller" class="btn btn-sm btn-secondary mr-2 mb-2" style="float:right;"><i class="bi bi-plus"></i></a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                    <table class="table table-hover" id="info">
+                    <tr>
+                        <th class="text-center">image</th>
+                        <th class="text-center">nickname</th>
+                        <th class="text-center">about pet</th>
+                        <th class="text-center">age</th>
+                        <th class="text-center">options</th>
+                    </tr>
+                    
+                        <?php foreach($pet as $pets) :?>
+                    <tr class="text-center">
+                        <input type="hidden" name="id" value="<?php echo $pets['id'];?>">
+                        <th>
+                            <img src="public/img/fluffy.webp" alt="" width="100">
+                        </th>
+                        <th  style="vertical-align: middle;">
+                            <p><?php echo $pets['nick_name'];  ?></p>
+                        </th>
+                        <th  style="vertical-align: middle;">
+                            <p><?php echo $pets['about_pet'];  ?></p>
+                        </th>
+                        <th  style="vertical-align: middle;">
+                            <p><?php echo $pets['age'];  ?></p>
+                        </th>
+                        <th >
+                            <div class="d-flex justify-content-around align-items-center" style="vertical-align: middle;">
+                                <form action="" method="POST">
+                                    <input type="hidden" name="id" value="<?php echo $pets['id'] ?>">
+                                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 30px;"><i class="bi bi-eye"></i></button>         
+                                </form>
+                                <form action="postupdate" method="POST">
+                                    <input type="hidden" name="id" value="<?php echo $pets['id'] ?>">
+                                    <button class="border-0 bg-white p-0" style="color: #F5907C; font-size: 30px;">
+                                        <i class="bi bi-pencil-square" style="width: ;"></i>
+                                    </button>            
+                                </form>
+                                <form action="postdelete" method="post">
+                                    <input type="hidden" name="id" value="<?php echo $pets['id'] ?>">
+                                    <button class="border-0 bg-white p-0" style="color: #F5907C;">
+                                        <i class="bi bi-trash" style="color:#bfe6ba ; font-size: 30px;"></i>                                
+                                    </button>  
+                                </form>
+                            </div>                 
+                        </th>
+                        <?php endforeach; ?>
+                        <!-- MODAL -->
+                        <?php foreach($pet as $pets) :?>
+                            <form action="" method="post">
+                                <input type="hidden" name="id" value="<?php echo $pets['id'];?>">
+                            </form>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"><?php echo $pets['nick_name'];?></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><?php echo $pets['about_pet'];  ?></p>
+                                    <p><?php echo $pets['age'];  ?></p>
+                                </div>
+                                
                             </div>
-                            <div class="d-flex flex-column align-items-end ms-6">       
-                            <p class="fs-5 pe-3">5</p>    
-                            </div>  
+                            </div>
                         </div>
-                        <div style="width: 250px; border-radius: 5px; background-color: #FFBE6E; margin-left: 20px;">
-                            <div class="fs-1 ps-3">
-                                <i class="bi bi-file-earmark-richtext"></i> 
-                                <p class="fs-5">posts</p>            
-                            </div>                
-                            <div class="d-flex flex-column align-items-end ms-6">    
-                               <p class="fs-5 pe-3">5</p>       
-                            </div>        
-                        </div>
-                        <div style="width: 250px; border-radius: 5px; background-color: #bfe6ba; margin-left: 20px;">
-                            <div class="fs-1 ps-3">
-                                <i class="bi bi-chat-left-text"></i>      
-                                <p class="fs-5">comments</p>    
-                            </div>
-                            <div class="d-flex flex-column align-items-end ms-6">
-                                <p class="fs-5 pe-3">5</p>      
-                            </div>  
-                        </div> 
-                        <div style="width: 250px; border-radius: 5px; background-color: lightblue; margin-left: 20px;">
-                            <div class="fs-1 ps-3">
-                                <i class="bi bi-shield-exclamation"></i>
-                                <p class="fs-5">reclamations</p>
-                            </div>
-                            <div class="d-flex flex-column align-items-end ms-6">
-                                <p class="fs-5 pe-3">5</p>    
-                            </div>  
-                        </div> 
+                        <?php endforeach; ?>
+                    </tr>
+                </table>
+                </div>
+                </div>
+            </div>
             </div>
         </div>
     </div>
-    </div>
-    <div class="container" style="padding: 0 10%;">
-        <div class="container d-flex flex-row justify-content-around align-items-center">
-            <div>
-                <div class="card" style="width: 16rem; margin-left: 15%; background-color: lightblue;" id="profile">
-                    <img src="profileseller.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title text-center"><?php echo $_SESSION['username']; ?></h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item text-center">SELLER</li>
-                    </ul>
-                </div>
-            </div>
-        <div class="card border rounded" style=" margin-left: 5%; width: 100%;" id="info">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-10 mx-auto my-3">
+            <div class="card">
             <div class="card-header">
-            <h4>PETS</h4>
-            <a href="<?php echo BASE_URL;?>postseller" class="btn btn-sm btn-secondary mr-2 mb-2" style="float:right;"><i class="bi bi-plus"></i></a>
+                <h4>Products</h4>
+                <a href="<?php echo BASE_URL;?>postseller" class="btn btn-sm btn-secondary mr-2 mb-2" style="float:right;"><i class="bi bi-plus"></i></a>
             </div>
             <div class="card-body">
-            <table class="table table-hover" id="info">
-                <tr>
-                    <th class="text-center">image</th>
-                    <th class="text-center">nickname</th>
-                    <th class="text-center">about pet</th>
-                    <th class="text-center">age</th>
-                    <th class="text-center">options</th>
-                </tr>
-                
-                    <?php foreach($pet as $pets) :?>
-                <tr>
-                    <input type="hidden" name="id" value="<?php echo $pets['id'];?>">
-                    <th>
-                        <img src="fluffy.webp" alt="" width="100">
-                    </th>
-                    <th  style="vertical-align: middle;">
-                        <p><?php echo $pets['nick_name'];  ?></p>
-                    </th>
-                    <th  style="vertical-align: middle;">
-                        <p><?php echo $pets['about_pet'];  ?></p>
-                    </th>
-                    <th  style="vertical-align: middle;">
-                        <p><?php echo $pets['age'];  ?></p>
-                    </th>
-                    <th >
-                        <div class="d-flex justify-content-around align-items-center" style="vertical-align: middle;">
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 30px;"><i class="bi bi-eye"></i></button>
-                            <form action="postupdate" method="POST">
-                                <input type="hidden" name="id" value="<?php echo $pets['id'] ?>">
+                <div class="table-responsive">
+                <table class="table table-hover">
+                    <tr class="text-center">
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price(Dh)</th>
+                        <th>Categorie</th>
+                        <th>Options</th>
+                    </tr>
+                    <?php foreach($pro as $pros) :?>
+                        <input type="hidden" name="id" value="<?php echo $pros['idpro']; ?>">
+                        <tr class="text-center" style="vertical-align: middle;">
+                        <th><img src="public/img/wetfood.jpg" alt="" width="40"></th>
+                        <th><?php echo $pros['proname'] ;?></th>
+                        <th><?php echo $pros['price']; ?></th>
+                        <th><?php if($pros['categorie'] == 1 ){ echo'<span class="badge bg-secondary">food</span>';} elseif($pros['categorie'] == 2){ echo'<span class="badge bg-secondary">toy</span>';}elseif($pros['categorie'] == 3) {echo '<span class="badge bg-secondary">other</span>';};
+						      ;?></th>
+                        <th>
+                            <form action="productupdate" method="POST">
+                                <input type="hidden" name="idpro" value="<?php echo $pros['idpro'] ?>">
                                 <button class="border-0 bg-white p-0" style="color: #F5907C; font-size: 30px;">
-                                    <i class="bi bi-pencil-square" style="width: ;"></i>
+                                    <i class="bi bi-pencil-square"></i>
                                 </button>            
                             </form>
-                            <form action="postdelete" method="post">
-                                <input type="hidden" name="id" value="<?php echo $pets['id'] ?>">
+                            <form action="prodelete" method="post">
+                                <input type="hidden" name="idpro" value="<?php echo $pros['idpro'] ?>">
                                 <button class="border-0 bg-white p-0" style="color: #F5907C;">
                                     <i class="bi bi-trash" style="color:#bfe6ba ; font-size: 30px;"></i>                                
                                 </button>  
                             </form>
-                        </div>                 
-                    </th>
-                    <?php endforeach; ?>
-                    <!-- MODAL -->
-                    <?php foreach($pet as $pets) :?>
-                        <input type="hidden" name="id" value="<?php echo $pets['id'];?>">
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel"><?php echo $pets['nick_name'];?></h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p><?php echo $pets['about_pet'];  ?></p>
-                                <p><?php echo $pets['age'];  ?></p>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <?php endforeach; ?>
-                </tr>
-            </table>
+                        </th>
+                        <?php endforeach; ?>
+                    </tr>
+                </table>
+                </div>
+            </div>
             </div>
         </div>
-    </div>
-    </div>
-    <div class="container-fluid">
-        <div class="container d-flex flex-row" style="padding: 5% 10%;" id="content">
-            <div class="border rounded" style="margin-right: 5%;">
-                <canvas id="myChart" style="width:100%;max-width:600px" id="chart"></canvas>
-                <script>
-                    var xValues = ["males", "females"];
-                    var yValues = [51, 49,];
-                    var barColors = [
-                        "lightblue",
-                        "#F5907C",
-                        ];
+        </div>
         
-                    new Chart("myChart", {
-                    type: "pie",
-                    data: {
-                        labels: xValues,
-                        datasets: [{
-                        backgroundColor: barColors,
-                        data: yValues
-                        }]
-                    },
-                    options: {
-                        title: {
-                        display: true,
-                        text: "Client's gender"
-                        }
-                    }
-                    });
-                </script>
-            </div>
-            <div class="border rounded" id="comments">
-                <h4>comments:</h4>
-            <table class="table">
-                <tr>
-                    <th scope="row">
-                        <h6><i class="bi bi-person-circle"></i> Client</h6>
-                    </th>
-                    <th scope="row">
-                        <p>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</p>
-                    </th>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <h6><i class="bi bi-person-circle"></i> Client</h6>
-                    </th>
-                    <th scope="row">
-                        <p>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</p>
-                    </th>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <h6><i class="bi bi-person-circle"></i> Client</h6>
-                    </th>
-                    <th scope="row">
-                        <p>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</p>
-                    </th>
-                </tr>
-            </table>
-            </div>
-        </div>
     </div>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

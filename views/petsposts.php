@@ -1,3 +1,13 @@
+<?php
+require_once 'controllers/UsersController.php';
+$id = $_SESSION["id"];  
+
+$data = new PetController();
+$pet = $data->getAllPets();
+$pets = $data->getOnePet();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,8 +60,8 @@
     <nav class="navbar navbar-light fixed-top" id="visible"
         style="background-color: #f7f1e3;  border: 0px solid; padding: 10px; box-shadow: 5px 10px 8px #888888;">
         <div class="container-fluid">
-            <a href="index.html"><img src="logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
-            <a href="index.html" style="text-decoration: none; color:black; font-weight: bold;">Client's name</a>
+            <a href="<?php echo BASE_URL;?>home"><img src="public/img/logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
+            <a href="<?php echo BASE_URL;?>profileclient" style="text-decoration: none; color:black; font-weight: bold;"><?php echo $_SESSION['username']; ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -64,9 +74,11 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <a href="<?php echo BASE_URL;?>home" class="d-flex justify-content-center align-items-center"><img src="logo.png"
+                    <a href="<?php echo BASE_URL;?>home" class="d-flex justify-content-center align-items-center"><img src="public/img/logo.png"
                             alt="logo"></a>
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item ps-3 pb-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>client"><i
+                                    class="bi bi-house-fill" style="padding-right: 3%;"></i>Accueil</a></li>
                         <li class="nav-item ps-3 pb-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>petsposts"><i
                                     class="bi bi-file-earmark-post" style="padding-right: 3%;"></i>Posts</a></li>
                         <li class="nav-item ps-3 pb-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>shop"><i class="bi bi-shop"
@@ -81,30 +93,38 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid d-flex justify-content-center align-items-center flex-column" style="width: 100%;"
-        id="cards">
+    <div class="container" style="width: 100%;" id="cards">
+    
         <div class="row" style="margin-top: 10%;">
-            <div class="col-4">
+        <?php foreach ($pet as $pets) :?>
+        <div class="col-md-5 mx-auto mb-3">
                 <div class="card d-flex justify-content-center align-items-center">
-                    <img src="puppy.webp" class="card-img-top" alt="...">
+                <input type="hidden" name="id" value="<?php echo $pets['id'];?>">
+                    <img src="public/img/puppy.webp" class="card-img-top" alt="...">
                     <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                        <h5 class="card-title">JOE <i class="bi bi-heart"></i></h5>
-                        <p class="card-text text-center">Hello there can you adopt me. I have no home.</p>
-                        <a href="#" class="btn w-100" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            style="background-color: #bfe6ba;">See
+                        <h5 class="card-title"><?php echo $pets['nick_name'];?> <i class="bi bi-heart"></i></h5>
+                        <p><?php echo $pets['about_pet'];?></p>
+                        <p><?php echo $pets['age'];  ?></p>
+                        <p class="card-text text-center">Hello, can you adopt me. I have no home.</p>
+                        <a href="<?php echo BASE_URL;?>contacter" class="btn w-100">
+                            Go
                         </a>
                     </div>
                 </div>
+        </div>
+            <?php endforeach; ?>
                 <!-- Modal -->
+                <!-- 
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
+                    <input type="hidden" name="id" value="">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <img src="puppy.webp" class="card-img-top" alt="...">
-                                <h5 class="card-title">JOE <i class="bi bi-heart"></i></h5>
-                                <p class="fw-bold">5 months old</p>
-                                <p>Youssoufia</p>
+                                <img src="public/img/puppy.webp" class="card-img-top" alt="...">
+                                <h5 class="card-title"> <i class="bi bi-heart"></i></h5>
+                                <p class="fw-bold"></p>
+                                <p></p>
                                 <a href="">seller's name</a>
                             </div>
                             <div class="modal-footer">
@@ -114,99 +134,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-4">
-                <div class="card d-flex justify-content-center align-items-center">
-                    <img src="fluffy.webp" class="card-img-top" alt="...">
-                    <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                        <h5 class="card-title">LOOLOO <i class="bi bi-heart-fill"></i></h5>
-                        <p class="card-text text-center">Hello there can you adopt me. I have no home.</p>
-                        <a href="#" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card d-flex justify-content-center align-items-center">
-                    <img src="dog.jpg" class="card-img-top" alt="...">
-                    <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                        <h5 class="card-title">COCO <i class="bi bi-suit-heart"></i></h5>
-                        <p class="card-text">Hello there can you adopt me. I have no home.</p>
-                        <a href="#" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                 -->
 
-        <div class="row" style="margin-top: 10%;">
-            <div class="col-4">
-                <div class="card d-flex justify-content-center align-items-center">
-                    <img src="puppy.webp" class="card-img-top" alt="...">
-                    <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                        <h5 class="card-title">JOE <i class="bi bi-heart"></i></h5>
-                        <p class="card-text text-center">Hello there can you adopt me. I have no home.</p>
-                        <a href="#" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-                    </div>
-                </div>
             </div>
-            <div class="col-4">
-                <div class="card d-flex justify-content-center align-items-center">
-                    <img src="fluffy.webp" class="card-img-top" alt="...">
-                    <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                        <h5 class="card-title">LOOLOO <i class="bi bi-heart-fill"></i></h5>
-                        <p class="card-text text-center">Hello there can you adopt me. I have no home.</p>
-                        <a href="#" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card d-flex justify-content-center align-items-center">
-                    <img src="dog.jpg" class="card-img-top" alt="...">
-                    <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                        <h5 class="card-title">COCO <i class="bi bi-suit-heart"></i></h5>
-                        <p class="card-text">Hello there can you adopt me. I have no home.</p>
-                        <a href="#" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 10%;">
-            <div class="col-4">
-                <div class="card d-flex justify-content-center align-items-center">
-                    <img src="puppy.webp" class="card-img-top" alt="...">
-                    <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                        <h5 class="card-title">JOE <i class="bi bi-heart"></i></h5>
-                        <p class="card-text text-center">Hello there can you adopt me. I have no home.</p>
-                        <a href="#" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card d-flex justify-content-center align-items-center">
-                    <img src="fluffy.webp" class="card-img-top" alt="...">
-                    <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                        <h5 class="card-title">LOOLOO <i class="bi bi-heart-fill"></i></h5>
-                        <p class="card-text text-center">Hello there can you adopt me. I have no home.</p>
-                        <a href="#" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card d-flex justify-content-center align-items-center">
-                    <img src="dog.jpg" class="card-img-top" alt="...">
-                    <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                        <h5 class="card-title">COCO <i class="bi bi-suit-heart"></i></h5>
-                        <p class="card-text">Hello there can you adopt me. I have no home.</p>
-                        <a href="#" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- responsive -->
     <div class="container-fluid d-flex flex-column" style="margin-top: 30%;" id="resp">
         <p class="card-text text-center">Hello there can you adopt me. I have no home.</p>
         <div class="card d-flex justify-content-center align-items-center">
-            <img src="puppy.webp" class="card-img-top" alt="...">
+            <img src="public/img/puppy.webp" class="card-img-top" alt="...">
             <div class="card-body d-flex justify-content-center align-items-center flex-column">
                 <h5 class="card-title">JOE <i class="bi bi-heart"></i></h5>
                 <p class="fw-bold">5 months old</p>

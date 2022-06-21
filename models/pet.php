@@ -3,6 +3,15 @@
 class Pet {
 
 	static public function getAll(){
+		$stmt = DB::connect()->prepare('SELECT * FROM pet WHERE id_pet = :id_pet');
+		$stmt->bindParam(':id_pet', $_SESSION["id"]);
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+		$stmt = null;
+	}
+
+	static public function getAllpet(){
 		$stmt = DB::connect()->prepare('SELECT * FROM pet');
 		$stmt->execute();
 		return $stmt->fetchAll();
@@ -24,10 +33,11 @@ class Pet {
 	}
 
 	static public function add($data){
-		$stmt = DB::connect()->prepare('INSERT INTO pet (nick_name, about_pet, age) VALUES (:nickname, :pet, :age)');
+		$stmt = DB::connect()->prepare('INSERT INTO pet (nick_name, about_pet, age, id_pet) VALUES (:nickname, :pet, :age, :id_pet)');
 		$stmt->bindParam(':nickname',$data['nick_name']);
 		$stmt->bindParam(':pet',$data['about_pet']);
 		$stmt->bindParam(':age',$data['age']);
+		$stmt->bindParam(':id_pet',$_SESSION["id"]);
 
 		if($stmt->execute()){
 			return 'ok';
@@ -37,6 +47,7 @@ class Pet {
 		$stmt->close();
 		$stmt = null;
 	}
+	
 	static public function update($data){
 		$stmt = DB::connect()->prepare('UPDATE pet SET nick_name=:nickname, about_pet=:pet, age=:age WHERE id=:id');
 		$stmt->bindParam(':id',$data['id']);

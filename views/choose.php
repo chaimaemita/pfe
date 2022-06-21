@@ -24,12 +24,12 @@
     <div class="container-fluid">
         <nav class="navbar">
             <div class="container-fluid d-flex align-items-center justify-content-center">
-              <a class="navbar-brand" href="index.html"><img src="logo.png" alt="" style="width: 70%;"></a>
+              <a class="navbar-brand" href="index.html"><img src="public/img/logo.png" alt="" style="width: 70%;"></a>
             </div>
         </nav>
         <div class="container-fluid d-flex justify-content-around">
             <div class="card" style="width: 18rem;">
-                <img src="adopt.png" class="card-img-top" alt="...">
+                <img src="public/img/adopt.png" class="card-img-top" alt="...">
                 <div class="card-body d-flex justify-content-center align-items-center flex-column">
                   <h5 class="card-title">Client-zone</h5>
                   <p class="card-text">Clik the button</p>
@@ -39,7 +39,7 @@
             </div>
             </div>
             <div class="card" style="width: 18rem;">
-                <img src="sell.jpg" class="card-img-top" alt="...">
+                <img src="public/img/sell.jpg" class="card-img-top" alt="...">
                 <div class="card-body d-flex justify-content-center align-items-center flex-column">
                   <h5 class="card-title">Seller-zone</h5>
                   <p class="card-text"> Click the button</p>

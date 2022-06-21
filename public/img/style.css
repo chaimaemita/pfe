@@ -1,0 +1,64 @@
+@media screen and (max-width: 950px){
+    #cards{
+        margin-top:50px;
+        display: inline-flex;
+    }
+    #clrs{
+        
+        max-width: 100%;
+        font-size: 20px;
+        padding: 0;
+    }
+    #info{
+        width: 100%;
+    }
+    #content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    #comments{
+        width: 100%;
+    }
+    #chart{
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    #visible{
+        display: none;
+    }
+    #none{
+        display: block !important;
+    }
+}
+@media screen and (max-width: 472px){
+    #none{
+        display: none !important;
+    }
+    #visible{
+        display: block;
+    }
+    #clrs p{
+        font-size: 20px;
+    }
+}
+@media screen and (max-width: 425px){
+    body{
+        display: flex;
+        flex-direction: column;
+    }
+    #cards{
+        padding-top: 20% !important;
+    }
+    #info{
+        width: 100%;
+    }
+    #none{
+        display: none !important;
+    }
+    #visible{
+        display: block;
+    }
+}

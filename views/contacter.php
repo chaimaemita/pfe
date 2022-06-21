@@ -1,8 +1,11 @@
 <?php
 require_once 'controllers/UsersController.php';
-$id = $_SESSION["id"];  
+$id = $_SESSION["id"];
 
-
+if (isset($_POST['send'])) {
+    $com = new commentsController();
+    $com->addComment();
+}
 
 ?>
 <!DOCTYPE html>
@@ -26,14 +29,10 @@ $id = $_SESSION["id"];
 
         body {
             width: 100%;
-
+            height: 100vh;
             display: flex;
             flex-direction: column;
             background-color: #DFEBE9;
-        }
-
-        #cards {
-            width: 18rem;
         }
 
         @media screen and (max-width: 472px) {
@@ -42,32 +41,10 @@ $id = $_SESSION["id"];
                 flex-direction: column;
             }
 
-            #home {
-                display: flex;
-                flex-direction: column;
-                margin-top: 60px;
-                margin-bottom: 100%;
-            }
-
-            #img {
-                display: none;
-            }
-
-            #parag {
-                width: 100%;
-                font-size: 10%;
-                padding: 0 !important;
-            }
-
-            #cards {
-                margin-top: 10%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column !important;
-                width: 100%;
-
-            }
+           #profile{
+               display: flex;
+               flex-direction: column !important;
+           }
         }
     </style>
 </head>
@@ -77,7 +54,8 @@ $id = $_SESSION["id"];
         style="background-color: #f7f1e3;  border: 0px solid; padding: 10px; box-shadow: 5px 10px 8px #888888;">
         <div class="container-fluid">
             <a href="<?php echo BASE_URL;?>home"><img src="public/img/logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
-            <a href="<?php echo BASE_URL;?>profileclient" style="text-decoration: none; color:black; font-weight: bold;"><?php echo $_SESSION['username']; ?></a>
+            
+            <a href="<?php echo BASE_URL;?>client" style="text-decoration: none; color:black; font-weight: bold;"><?php echo $_SESSION['username']; ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -92,7 +70,7 @@ $id = $_SESSION["id"];
                 <div class="offcanvas-body">
                     <a href="<?php echo BASE_URL;?>home" class="d-flex justify-content-center align-items-center"><img src="public/img/logo.png"
                             alt="logo"></a>
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item ps-3 pb-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>client"><i
                                     class="bi bi-house-fill" style="padding-right: 3%;"></i>Accueil</a></li>
                         <li class="nav-item ps-3 pb-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>petsposts"><i
@@ -109,58 +87,43 @@ $id = $_SESSION["id"];
             </div>
         </div>
     </nav>
-    <div class="container-fluid" style="background-color: #DFEBE9; padding: 10%;" id="scrollspyHeading1">
-        <div class="d-flex justify-content-center align-items-center flex-row" id="home"
-            style="padding: 0 5%; border: 1px solid #DFEBE9; padding: 10px; box-shadow: 5px 10px 18px #888888; border-radius: 5px;">
-            <div class="">
-                <img src="public/img/needs.png" alt="" style="height: 350px;" id="img">
+    <div class="container-fluid" style="padding: 6% 10%;">
+        <div class="row" id="profile">
+            <div class="col-md-6">
+                <div class="card" style="background-color: white; padding: 5% 5%; padding-bottom: 0;">
+                    <div class="card-header" style="background-color: #f7f1e3;">
+                        <h3>🐰 to adopt this one, make a comment.</h3>
+                    </div> 
+                    <div class="card-body">
+                        <form action="" method="POST" class="d-flex justify-content-center flex-column" style="padding: 5%;">
+                            <input type="hidden" name="id">
+                            <div class="form-group form-floating mb-3">
+                                <input class="form-control" id="floatingInput" placeholder="xxxxx" type="text" name="name">
+                                <label for="floatingInput">username</label>
+                            </div>
+                            <div class="form-group form-floating mb-3">
+                                <input class="form-control" id="floatingInput" placeholder="xxxxx" type="email" name="email">
+                                <label for="floatingInput">E-mail</label>
+                            </div>
+                            <div class="form-group form-floating mb-3">
+                                <input class="form-control" id="floatingInput" placeholder="xxxxx" type="number" name="phone">
+                                <label for="floatingInput">Phone</label>
+
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control" name="comment" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                <label for="floatingTextarea">Comment</label>
+                            </div>
+                            <input class="form-control fw-bold" type="submit" value="SEND" name="send" style="background-color: #f7f1e3; border: none; margin-top: 10px;">          
+                        </form>
+                    </div>   
+                </div>
             </div>
-            <div class="d-flex flex-column">
-                <p class="w-75" id="parag" style="font-size: 18px; padding-left: 20%;"><span
-                        class="fw-bold">E-pet.com</span> is one of moroccan's leading online pet
-                    stores. offering the highets quality over-the-counter pet
-                    medications. We understand the special bond
-                    between you and your pet and take their health and
-                    well-being very seriously. We hope to become your
-                    favorite 1-stop online pet store, where you find quality
-                    products at unbeatable prices.
-                </p>
+            <div class="col-md-3 ">
+                <img src="public/img/comment.png" alt="">
             </div>
         </div>
     </div>
-    <div class="container" style="height: 100vh; width: 100%;" id="cards">
-    <div class="row">
-        <div class="col-md-4 mx-auto">
-            <div class="card d-flex justify-content-center align-items-center">
-                <img src="public/img/puppy.webp" class="card-img-top" alt="...">
-                <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                    <h5 class="card-title">JOE <i class="bi bi-heart"></i></h5>
-                    <p class="card-text text-center">Hello there can you adopt me. I have no home.</p>
-                    <a href="petsposts.html" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mx-auto">
-            <div class="card d-flex justify-content-center align-items-center">
-                <img src="public/img/wetfood.jpg" class="card-img-top" alt="..." width="80" height="300">
-                <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                    <h5 class="card-title">FIZZO <i class="bi bi-heart-fill"></i></h5>
-                    <a href="petsposts.html" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mx-auto">
-            <div class="card d-flex justify-content-center align-items-center">
-                <img src="public/img/dog.jpg" class="card-img-top" alt="...">
-                <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                    <h5 class="card-title">COCO <i class="bi bi-suit-heart"></i></h5>
-                    <p class="card-text">Hello there can you adopt me. I have no home.</p>
-                    <a href="petsposts.html" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-                </div>
-            </div>
-        </div>
-    </div>
-   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

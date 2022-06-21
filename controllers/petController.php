@@ -7,6 +7,11 @@ class PetController{
 		return $pet;
 	}
 
+	public function getAllPets(){
+		$pet = Pet::getAllpet();
+		return $pet;
+	}
+
 	public function getOnePet(){
 		if(isset($_POST['id'])){
 			$data = array(
@@ -29,7 +34,7 @@ class PetController{
 			$data = array(
 				'nick_name' => $_POST['nickname'],
 				'about_pet' => $_POST['disc'],
-				'age' => $_POST['date'],
+				'age' => $_POST['date']
 			);
 			$result = Pet::add($data);
 			if($result === 'ok'){
@@ -47,7 +52,7 @@ class PetController{
 				'id' => $_POST['id'],
 				'nick_name' => $_POST['nickname'],
 				'about_pet' => $_POST['disc'],
-				'age' => $_POST['date'],
+				'age' => $_POST['date']
 			);
 			$result = Pet::update($data);
 			if($result === 'ok'){

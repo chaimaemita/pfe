@@ -33,7 +33,7 @@
                 <li class="nav-item"><a class="navbar-brand" href="#scrollspyHeading2">Our pets</a></li>
                 <li class="nav-item"><a class="navbar-brand" href="#gallery">Gallery</a></li>
             </ul>
-           <a href="#epet"><img src="logo.png" alt="logo" style="width: 70%;"></a>
+           <a href="#epet"><img src="public/img/logo.png" alt="logo" style="width: 70%;"></a>
             <ul class="d-flex justify-content-between" style="text-decoration: none; list-style: none;">
                 <li><a class="navbar-brand" href="<?php echo BASE_URL;?>connexion">Se connecter</a></li>
                 <li><a class="navbar-brand" href="<?php echo BASE_URL;?>sinscrire">S'inscrire</a></li>
@@ -56,7 +56,7 @@
 <div class="container-fluid" style="background-color: #DFEBE9; height: 100vh; padding-top: 10%; padding-left: 10%;" id="scrollspyHeading1">
     <div class="row d-flex justify-content-center align-items-center" style="padding: 0 5%;">
         <div class="col-6">
-            <img src="needs.png" alt="" style="height: 350px;">
+            <img src="public/img/needs.png" alt="" style="height: 350px;">
         </div>
         <div class="col-6 d-flex flex-column">
             <p class="w-75" style="font-size: 18px;"><span class="fw-bold">E-pet.com</span> is one of moroccan's leading online pet 
@@ -77,28 +77,28 @@
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="dog.jpg" class="d-block w-50" alt="image" id="img">
+            <img src="public/img/dog.jpg" class="d-block w-50" alt="image" id="img">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Hello there, I'm MIKEY</h5>
                     <p>If you want to adopt me, please enter</p>
                 </div>
           </div>
           <div class="carousel-item">
-            <img src="puppy.webp" class="d-block w-50" alt="image" id="img">
+            <img src="public/img/puppy.webp" class="d-block w-50" alt="image" id="img">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Hello there, I'm JOE</h5>
                     <p>If you want to adopt me, please enter </p>
                 </div>
           </div>
           <div class="carousel-item">
-            <img src="sphynx.webp" class="d-block w-50" alt="image" id="img">
+            <img src="public/img/sphynx.webp" class="d-block w-50" alt="image" id="img">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Hello there, my name is LOOLOO</h5>
                     <p>If you want to adopt me, please enter</p>
                 </div>
           </div>
           <div class="carousel-item">
-            <img src="kitten.jpg" class="d-block w-50" alt="image" id="img">
+            <img src="public/img/kitten.jpg" class="d-block w-50" alt="image" id="img">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Hello there, my name is COCO</h5>
                     <p>If you want to adopt me, please enter</p>
@@ -118,40 +118,40 @@
 <div class="container-fluid" id="gallery" >
     <div class="row">
         <div class="col-md-3">
-            <img src="fluffy.webp" alt="" class="w-75" style="height: 150px; margin: 5px 0;">
+            <img src="public/img/fluffy.webp" alt="" class="w-75" style="height: 150px; margin: 5px 0;">
         </div>
         <div class="col-md-3">
-            <img src="golden.jpg" alt="" class="w-75" style="height: 150px; margin: 5px 0;">
+            <img src="public/img/golden.jpg" alt="" class="w-75" style="height: 150px; margin: 5px 0;">
         </div>
         <div class="col-md-3">
-            <img src="pomeranian.webp" alt="" class="w-75" style="height: 150px; margin: 5px 0;">
+            <img src="public/img/pomeranian.webp" alt="" class="w-75" style="height: 150px; margin: 5px 0;">
         </div>
         <div class="col-md-3">
-            <img src="britishorthair.webp" alt="" class="w-75" style="height: 150px; margin: 5px 0;">
+            <img src="public/img/britishorthair.webp" alt="" class="w-75" style="height: 150px; margin: 5px 0;">
         </div>
         <div class="col-md-3">
-            <img src="small.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px ;">
+            <img src="public/img/small.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px ;">
         </div>
         <div class="col-md-3">
-            <img src="angry.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px ;">
+            <img src="public/img/angry.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px ;">
         </div>
         <div class="col-md-3">
-            <img src="smalldog.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px;">
+            <img src="public/img/smalldog.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px;">
         </div>
         <div class="col-md-3">
-            <img src="funny.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px;">
+            <img src="public/img/funny.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px;">
         </div>
         <div class="col-md-3">
-            <img src="cat.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px;">
+            <img src="public/img/cat.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px;">
         </div>
         <div class="col-md-3">
-            <img src="happy.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px;">
+            <img src="public/img/happy.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px;">
         </div>
         <div class="col-md-3">
-            <img src="frnds.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px;">
+            <img src="public/img/frnds.webp" alt="" class="w-75" style="height: 150px; margin-bottom: 5px;">
         </div>
         <div class="col-md-3">
-            <img src="luv.jpg" alt="" class="w-75" style="height: 150px; margin-bottom: 5px;">
+            <img src="public/img/luv.jpg" alt="" class="w-75" style="height: 150px; margin-bottom: 5px;">
         </div>
     </div>
 </div>

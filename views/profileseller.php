@@ -1,7 +1,17 @@
 <?php
     require_once 'controllers/UsersController.php';
-    $id = $_SESSION["id"];    
+    $id = $_SESSION["id"];  
+    
+    $exitUser = new UsersController();
+    $user = $exitUser->getUser($id);
+    
+    if (isset($_POST['update'])) {
+        $exitUser = new UsersController();
+        $exitUser->updateUser();
+    }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +76,7 @@
                 <li class="nav-item pe-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>seller"><i class="bi bi-house"></i>Dashbord</a></li>
                 <li class="nav-item ps-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>postseller"><i class="bi bi-pencil-square"></i>Post</a></li>
             </ul>
-           <a href="index.html"><img src="logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
+           <a href="index.html"><img src="public/img/logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
             <ul class="d-flex justify-content-between" style="text-decoration: none; list-style: none;">
                 <li class="nav-item pe-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>profileseller><i class="bi bi-file-person-fill"></i>Profile</a></li>
                 <li class="ps-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>logout" style=" border-radius: 5px; padding: 5px;" id="logout">LOG OUT</a></li>
@@ -77,7 +87,7 @@
     <nav class="navbar navbar-light fixed-top" id="visible"
     style="background-color: lightblue;  border: 0px solid; padding: 10px; box-shadow: 5px 10px 8px #888888;">
     <div class="container-fluid">
-        <a href="index.html"><img src="logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
+        <a href="index.html"><img src="public/img/logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
         <h5>Seller's name</h5>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar">
@@ -109,41 +119,45 @@
         <div class="d-flex justify-content-center align-items-center flex-row" id="profile">
             <div class="">
                 <div class="card" style="width: 18rem; margin-right: 50px;" id="profile">
-                    <img src="profileseller.png" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $_SESSION['username']; ?></h5>
+                    <img src="public/img/profileseller.png" class="card-img-top" alt="">
+                    <div class="card-header text-center">
+                        <h5 class="card-title"><?php echo $user['user_name']; ?></h5>
                     </div>
+                    <div class="card-body">                    
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><i class="bi bi-envelope"></i>: <?php echo $_SESSION['email']; ?></li>
-                        <li class="list-group-item"><i class="bi bi-telephone"></i>: <?php echo $_SESSION['phone']; ?></li>
-                        <li class="list-group-item"><i class="bi bi-calendar"></i>: <?php echo $_SESSION['date']; ?></li>
+                        <li class="list-group-item"><i class="bi bi-envelope"></i>: <?php echo $user['email']; ?></li>
+                        <li class="list-group-item"><i class="bi bi-telephone"></i>: <?php echo $user['phone']; ?></li>
+                        <li class="list-group-item"><i class="bi bi-calendar"></i>: <?php echo $user['date']; ?></li>
                     </ul>
+                </div>
                 </div>
             </div>
 
             <div class="card" style="background-color: white; padding: 10% 5%; padding-bottom: 0; margin-left: 50px;" id="profile">
                 <div class="card-header" style="background-color: lightblue;">
-                    <h3>If you want to edit your profile</h3>
+                    <h3>🐰 edit your profile</h3>
                 </div> 
                 <div class="card-body">
                     <form action="" method="post" class="d-flex justify-content-center flex-column" style="padding: 5%;">
+                        <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
                         <div class="form-group form-floating mb-3">
-                            <input class="form-control" type="text" name="username" id="floatingInput" placeholder="xxxxx">
+                            <input class="form-control" type="text" name="username" id="floatingInput" placeholder="xxxxx" value="<?php echo $user['user_name'];?>">
                             <label for="floatingInput"><i class="bi bi-person"></i> username</label>
                         </div>    
                         <div class="form-group form-floating mb-3">
-                            <input class="form-control" type="email" name="email" id="floatingInput" placeholder="name@example.com">
+                            <input class="form-control" type="email" name="email" id="floatingInput" placeholder="name@example.com" value="<?php echo $user['email'];?>">
                             <label for="floatingInput"><i class="bi bi-envelope"></i> E-mail</label>
                         </div>
                         <div class="form-group form-floating mb-3">
-                            <input class="form-control" type="number" name="phone" id="floatingInput" placeholder="06XXXXX">
+                            <input class="form-control" type="number" name="phone" id="floatingInput" placeholder="06XXXXX" value="<?php echo $user['phone'];?>">
                             <label for="floatingInput"><i class="bi bi-telephone"></i> Phone</label>
                         </div>
                         <div class="form-group form-floating">
-                            <input class="form-control" type="date" name="date" id="floatingInput" placeholder="XX/XX/XXXX">
+                            <input class="form-control" type="date" name="date" id="floatingInput" placeholder="XX/XX/XXXX" value="<?php echo $user['date'];?>">
+
                             <label for="floatingInput"><i class="bi bi-calendar"></i> Date</label>
                         </div>
-                        <input class="form-control" type="submit" value="UPDATE"
+                        <input class="form-control" type="submit" value="UPDATE" name="update"
                             style="background-color: lightblue; border: none; margin-top: 10px;">
                     </form>
                 </div>   
