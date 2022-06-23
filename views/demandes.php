@@ -1,21 +1,9 @@
 <?php
-    $id = $_SESSION["id"];
-
-    $exitUser = new UsersController();
-    $user = $exitUser->getPost($id);
+    require_once 'controllers/UsersController.php';
+    $id = $_SESSION["id"];  
     
-            
-    $exitPet = new PetController();
-    $pet = $exitPet->getOnePet();
-            // echo "hello";
-            
-    if(isset($_POST['update'])){
-        $exitPet = new PetController();
-        $exitPet->updatePet();
-    }
-
-    
-
+    $getorder = new commentsController();
+    $order = $getorder->getAllComments();
 ?>
 
 <!DOCTYPE html>
@@ -91,7 +79,7 @@
     </nav>
     <!-- responsive -->
     <nav class="navbar navbar-light fixed-top" id="visible"
-        style="background-color: lightblue;  border: 0px solid; padding: 10px; box-shadow: 5px 10px 8px #888888;">
+    style="background-color: lightblue;  border: 0px solid; padding: 10px; box-shadow: 5px 10px 8px #888888;">
         <div class="container-fluid">
             <a href="index.html"><img src="public/img/logo.png" alt="logo" style="width: 70px; height: 70px;"></a>
             <h5>Seller's name</h5>
@@ -110,10 +98,10 @@
                     <a href="index.html" class="d-flex justify-content-center align-items-center"><img src="logo.png"
                             alt="logo"></a>
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item pb-3 ps-3"><a class="navbar-brand" href="seller.html"><i class="bi bi-house"></i>Dashbord</a></li>
-                        <li class="nav-item pb-3 ps-3"><a class="navbar-brand" href="postseller.html"><i class="bi bi-pencil-square"></i>Post</a></li>
-                        <li class="nav-item pb-3 ps-3"><a class="navbar-brand" href="profileseller.html"><i class="bi bi-file-person-fill"></i>Profile</a></li>
-                        <li class="ps-3" style="margin-top: 20%;"><a class="navbar-brand" href="sinscrire.html"
+                        <li class="nav-item pb-3 ps-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>seller"><i class="bi bi-house"></i>Dashbord</a></li>
+                        <li class="nav-item pb-3 ps-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>postseller"><i class="bi bi-pencil-square"></i>Post</a></li>
+                        <li class="nav-item pb-3 ps-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>profileseller"><i class="bi bi-file-person-fill"></i>Profile</a></li>
+                        <li class="ps-3" style="margin-top: 20%;"><a class="navbar-brand" href="<?php echo BASE_URL;?>logout"
                                 style=" border-radius: 5px; padding: 5px;" id="logout"><i style="padding-right: 3%;"
                                     class="bi bi-box-arrow-right"></i> LOG OUT</a></li>
                     </ul>
@@ -121,54 +109,45 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid" style="padding: 6% 10%;">
-        <div class="d-flex justify-content-center align-items-center flex-row" id="profile">
-            <div class="">
-            <div class="card" style="width: 18rem; margin-right: 50px;" id="profile">
-            <?php foreach($user as $users) : ?>
-                    <img src="public/img/profileseller.png" class="card-img-top" alt="">
-                    <div class="card-header text-center">
-                        <h5 class="card-title"><?php echo $users['user_name']; ?></h5>
+<div class="container" style="padding-top: 10% ;">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Orders</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th scope="col">NAME</th>
+                                        <th scope="col">E-MAIL</th>
+                                        <th scope="col">PHONE</th>
+                                        <th scope="col">ORDER</th>
+                                        <th scope="col">PET'S NAME</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($order as $orders): ?>
+                                        <tr class="text-center">
+                                            <td><?php echo $orders['name']; ?></td>
+                                            <td><?php echo $orders['email']; ?></td>
+                                            <td><?php echo $orders['phone']; ?></td>
+                                            <td><?php echo  $orders['demande']; ?></td>
+                                            <td><?php echo $orders['name_pet']; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                        </table>
                     </div>
-                    <div class="card-body">                    
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><i class="bi bi-envelope"></i>: <?php echo $users['email']; ?></li>
-                        <li class="list-group-item"><i class="bi bi-telephone"></i>: <?php echo $users['phone']; ?></li>
-                        <li class="list-group-item"><i class="bi bi-calendar"></i>: <?php echo $users['date']; ?></li>
-                    </ul>
                 </div>
-                <?php endforeach; ?>
-                </div>
-            </div>
-            <div class="card" style="background-color: white; padding: 10% 5%; padding-bottom: 0; border-radius: 5px;">
-            <div class="card-header" style="background-color: lightblue;">
-                <h3>🦄 Edit a pet's post</h3>
-            </div>    
-            <div class="card-body">
-                    <form action="" method="POST" class="d-flex justify-content-center flex-column" style="padding: 5%;">
-                        <input type="hidden" name="id" value="<?php echo $pet->pet; ?>">
-                        <div class="form-group form-floating mb-3">
-                            <input class="form-control" type="text" name="nickname" id="floatingInput" placeholder="xxxxx" value="<?php echo $pet->nick_name;?>">   
-                            <label for="floatingInput">🐾nickname</label>
-                        </div>
-                        <div class="form-group form-floating mb-3">
-                            <input  class="form-control" type="text" name="disc" id="floatingInput" placeholder="xxxxx" value="<?php echo $pet->about_pet;?>">    
-                            <label for="dfloatingInput">🐾about the pet</label>
-                        </div>
-                        <div class="form-group form-floating">
-                            <input class="form-control" type="text" name="date" id="floatingInput" placeholder="xxxxx" value="<?php echo $pet->age;?>">
-                            <label for="floatingInput">🐾age</label>
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="submit" name="update" value="Add to your list" style="background-color: lightblue; border: none; margin-top: 10px;">
-                        </div>
-                    </form>
-            </div>
-            </div>
+                
+            </div> 
         </div>
     </div>
 </div>
-    
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

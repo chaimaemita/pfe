@@ -91,10 +91,18 @@ $pro = $data->getAllProducts();
             </div>
         </div>
     </nav>
-    <div class="container-fluid" style="margin-top: 15%;">
-        <h3 id="welcome">Welcome <span><?php echo $_SESSION['username']; ?>👋</span>. <br> All your needs are here, in our shop 🛍.</h3>
+    <div class="container-fluid" style="margin-top: 10%;">
+        <div class="row boredr bg-light" style="margin: 0 15%; border-radius: 5px; box-shadow: -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px #DFEBE9; ">
+            <div class="col-md-6 mx-auto">
+                <h3 id="welcome" style="padding-top: 15%;">Welcome <span><?php echo $_SESSION['username']; ?>👋</span>. <br> All your needs are here, in our shop 🛍.</h3>
+            </div>
+            <div class="col-md-4">
+                <img src="public/img/shop.png" alt="" width="300">
+            </div>
+        </div>
 
-        <table class="table table-striped" style="background-color: #bfe6ba; margin-top: 3%;" id="table">
+        <table class="table table-striped" style="background-color: #fad390; margin-top: 3%;" id="table">
             <tr class="text-center">
                         <th>Image</th>
                         <th>Name</th>

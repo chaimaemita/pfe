@@ -20,11 +20,11 @@ class Pet {
 	}
 
 	static public function getPet($data){
-		 $id = $data['id'];
+		 $pet = $data['pet'];
 		try{
-			$query = 'SELECT * FROM pet WHERE id=:id';
+			$query = 'SELECT * FROM pet WHERE pet=:pet';
 			$stmt = DB::connect()->prepare($query);
-			$stmt->execute(array(":id" => $id));
+			$stmt->execute(array(":pet" => $pet));
 			$pet = $stmt->fetch(PDO::FETCH_OBJ);
 			return $pet;
 		}catch(PDOException $ex){
@@ -33,9 +33,9 @@ class Pet {
 	}
 
 	static public function add($data){
-		$stmt = DB::connect()->prepare('INSERT INTO pet (nick_name, about_pet, age, id_pet) VALUES (:nickname, :pet, :age, :id_pet)');
+		$stmt = DB::connect()->prepare('INSERT INTO pet (nick_name, about_pet, age, id_pet) VALUES (:nickname, :about_pet, :age, :id_pet)');
 		$stmt->bindParam(':nickname',$data['nick_name']);
-		$stmt->bindParam(':pet',$data['about_pet']);
+		$stmt->bindParam(':about_pet',$data['about_pet']);
 		$stmt->bindParam(':age',$data['age']);
 		$stmt->bindParam(':id_pet',$_SESSION["id"]);
 
@@ -49,11 +49,11 @@ class Pet {
 	}
 	
 	static public function update($data){
-		$stmt = DB::connect()->prepare('UPDATE pet SET nick_name=:nickname, about_pet=:pet, age=:age WHERE id=:id');
-		$stmt->bindParam(':id',$data['id']);
-		$stmt->bindParam(':nickname',$data['nick_name']);
-		$stmt->bindParam(':pet',$data['about_pet']);
-		$stmt->bindParam(':age',$data['age']);
+		$stmt = DB::connect()->prepare('UPDATE pet SET nick_name = :nickname, about_pet = :about_pet, age = :age WHERE pet = :pet');
+		$stmt->bindParam(':pet', $data['pet']);
+		$stmt->bindParam(':nickname', $data['nick_name']);
+		$stmt->bindParam(':about_pet', $data['about_pet']);
+		$stmt->bindParam(':age', $data['age']);
 		$query = $stmt->execute();
 		if($query){
 			return 'ok';
@@ -67,9 +67,9 @@ class Pet {
 	static public function delete($data){
 		$id = $data['id'];
 		try{
-			$query = 'DELETE FROM pet WHERE id=:id';
+			$query = 'DELETE FROM pet WHERE pet=:pet';
 			$stmt = DB::connect()->prepare($query);
-			$stmt->execute(array(":id" => $id));
+			$stmt->execute(array(":pet" => $pet));
 			if($stmt->execute()){
 				return 'ok';
 			}

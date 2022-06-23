@@ -177,7 +177,10 @@
             <div class="card border rounded" style=" width: 100%;" id="info">
                 <div class="card-header">
                     <h4>PETS</h4>
-                    <a href="<?php echo BASE_URL;?>postseller" class="btn btn-sm btn-secondary mr-2 mb-2" style="float:right;"><i class="bi bi-plus"></i></a>
+                    <div style="float:right;">
+                        <a href="<?php echo BASE_URL;?>demandes" class="btn btn-sm btn-secondary mr-2 mb-2" ><i class="bi bi-chat-square"></i></a>
+                        <a href="<?php echo BASE_URL;?>postseller" class="btn btn-sm btn-secondary mr-2 mb-2"><i class="bi bi-plus"></i></a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -192,7 +195,7 @@
                     
                         <?php foreach($pet as $pets) :?>
                     <tr class="text-center">
-                        <input type="hidden" name="id" value="<?php echo $pets['id'];?>">
+                        <input type="hidden" name="id" value="<?php echo $pets['pet'];?>">
                         <th>
                             <img src="public/img/fluffy.webp" alt="" width="100">
                         </th>
@@ -208,17 +211,17 @@
                         <th >
                             <div class="d-flex justify-content-around align-items-center" style="vertical-align: middle;">
                                 <form action="" method="POST">
-                                    <input type="hidden" name="id" value="<?php echo $pets['id'] ?>">
+                                    <input type="hidden" name="id" value="">
                                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 30px;"><i class="bi bi-eye"></i></button>         
                                 </form>
                                 <form action="postupdate" method="POST">
-                                    <input type="hidden" name="id" value="<?php echo $pets['id'] ?>">
+                                    <input type="hidden" name="id" value="<?php echo $pets['pet'] ?>">
                                     <button class="border-0 bg-white p-0" style="color: #F5907C; font-size: 30px;">
                                         <i class="bi bi-pencil-square" style="width: ;"></i>
                                     </button>            
                                 </form>
                                 <form action="postdelete" method="post">
-                                    <input type="hidden" name="id" value="<?php echo $pets['id'] ?>">
+                                    <input type="hidden" name="id" value="<?php echo $pets['pet'] ?>">
                                     <button class="border-0 bg-white p-0" style="color: #F5907C;">
                                         <i class="bi bi-trash" style="color:#bfe6ba ; font-size: 30px;"></i>                                
                                     </button>  
@@ -229,7 +232,7 @@
                         <!-- MODAL -->
                         <?php foreach($pet as $pets) :?>
                             <form action="" method="post">
-                                <input type="hidden" name="id" value="<?php echo $pets['id'];?>">
+                                <input type="hidden" name="id" value="<?php echo $pets['pet'];?>">
                             </form>
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">

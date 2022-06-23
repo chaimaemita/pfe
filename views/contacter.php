@@ -1,12 +1,15 @@
 <?php
-require_once 'controllers/UsersController.php';
-$id = $_SESSION["id"];
+    require_once 'controllers/UsersController.php';
+    $id = $_SESSION["id"];
 
-if (isset($_POST['send'])) {
-    $com = new commentsController();
-    $com->addComment();
-}
+    $namePet = new PetController();
+    $nick_name = $namePet->getAllPets();
+   
 
+    if (isset($_POST['send'])) {
+        $com = new commentsController();
+        $com->addComment();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +53,7 @@ if (isset($_POST['send'])) {
 </head>
 
 <body>
+   
     <nav class="navbar navbar-light fixed-top" id="visible"
         style="background-color: #f7f1e3;  border: 0px solid; padding: 10px; box-shadow: 5px 10px 8px #888888;">
         <div class="container-fluid">
@@ -96,7 +100,6 @@ if (isset($_POST['send'])) {
                     </div> 
                     <div class="card-body">
                         <form action="" method="POST" class="d-flex justify-content-center flex-column" style="padding: 5%;">
-                            <input type="hidden" name="id">
                             <div class="form-group form-floating mb-3">
                                 <input class="form-control" id="floatingInput" placeholder="xxxxx" type="text" name="name">
                                 <label for="floatingInput">username</label>
@@ -111,8 +114,16 @@ if (isset($_POST['send'])) {
 
                             </div>
                             <div class="form-floating">
-                                <textarea class="form-control" name="comment" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                                <label for="floatingTextarea">Comment</label>
+                                <textarea class="form-control" name="demande" placeholder="demande" id="floatingTextarea"></textarea>
+                                <label for="floatingTextarea">demande</label>
+                            </div>
+                            <div class="form-floating mt-3">
+                            <select class="form-select" aria-label="Default select example" name ="name_pet">
+                            <option selected>choose your pet</option>
+                                <?php foreach($nick_name as $val) :?>
+                            <option><?php echo $val['nick_name']; ?></option>
+                            <?php endforeach; ?>
+                            </select>
                             </div>
                             <input class="form-control fw-bold" type="submit" value="SEND" name="send" style="background-color: #f7f1e3; border: none; margin-top: 10px;">          
                         </form>
@@ -124,6 +135,7 @@ if (isset($_POST['send'])) {
             </div>
         </div>
     </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

@@ -27,18 +27,17 @@ class UsersController {
 	}
 
 	public function register(){
-		if(isset($_POST['submit'])){
+		if(isset($_POST['envoyer'])){
 			$options = [
 				'cost' => 12
 			];
 			$password = password_hash($_POST['mdp'],PASSWORD_BCRYPT,$options);
-			// $password = ($_POST['mdp']);
 			$data = array(
 				'user_name' => $_POST['username'],
 				'email' => 	$_POST['email'],	
 				'password' => $password,
 				'phone' => 	$_POST['phone'],	
-				'date' => 	$_POST['date']	
+				'date' => $_POST['date']	
 			);
 			$result = User::createUser($data);
 			if($result === 'ok'){
@@ -49,6 +48,7 @@ class UsersController {
 			}
 		}
 	}
+	
 	public function updateUser(){
 		if (isset($_POST['update'])) {
 			$data = array(

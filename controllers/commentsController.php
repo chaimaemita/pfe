@@ -6,18 +6,22 @@
         return $com;
     }
 
-    public function getAllComment(){
-        $com = Comment::getAllComments();
-        return $com;
-    }
+    // public function getAllComment(){
+    //     $com = Comment::getAllComments();
+    //     return $com;
+    // }
 
     public function getOneComment(){
+
         if (isset($_POST['id'])) {
-            $data = array(
+             $data = array(
                 'id' => $_POST['id']
             );
+          
             $com = Comment::getComment($data);
             return $com;
+            // print_r($com);
+            // die();
         }
     }
 
@@ -27,13 +31,14 @@
                 'name' => $_POST['name'],
                 'email' => $_POST['email'],
                 'phone' => $_POST['phone'],
-                'comment' => $_POST['comment']
+                'demande' => $_POST['demande'],
+                'name_pet' => $_POST['name_pet']
             );
-
+            exit;
             $result = Comment::addCom($data);
             if ($result === 'ok') {
-                Session::set('success', 'comment added');
-                Redirect::to('contacter');
+                Session::set('success', 'demande added');
+                Redirect::to('petsposts');
             }else {
                 echo $result;
             }

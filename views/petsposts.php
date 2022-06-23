@@ -99,16 +99,20 @@ $pets = $data->getOnePet();
         <?php foreach ($pet as $pets) :?>
         <div class="col-md-5 mx-auto mb-3">
                 <div class="card d-flex justify-content-center align-items-center">
-                <input type="hidden" name="id" value="<?php echo $pets['id'];?>">
+                <!-- <input type="text" name="id" value="<?php //echo $pets['pet'];?>"> -->
                     <img src="public/img/puppy.webp" class="card-img-top" alt="...">
                     <div class="card-body d-flex justify-content-center align-items-center flex-column">
                         <h5 class="card-title"><?php echo $pets['nick_name'];?> <i class="bi bi-heart"></i></h5>
                         <p><?php echo $pets['about_pet'];?></p>
-                        <p><?php echo $pets['age'];  ?></p>
+                        <p><?php echo $pets['age']; ?></p>
                         <p class="card-text text-center">Hello, can you adopt me. I have no home.</p>
-                        <a href="<?php echo BASE_URL;?>contacter" class="btn w-100">
-                            Go
-                        </a>
+                        <form action="contacter" method="post">
+                            <input type="hidden" name="<?php echo $pets['pet'] ?>">
+                            <button class="btn w-100">
+                                Go
+                            </button>
+                        </form>
+                       
                     </div>
                 </div>
         </div>

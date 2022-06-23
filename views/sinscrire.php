@@ -1,5 +1,5 @@
 <?php 
-	if(isset($_POST['submit'])){
+	if(isset($_POST['envoyer'])){
 		$createUser = new UsersController();
 		$createUser->register();
 	}
@@ -49,30 +49,86 @@
 </style>
 </head>
 <body>
-    <div class="container-fluid d-flex justify-content-center">
-        <div class="d-flex justify-content-around align-items-center flex-row" style="padding: 2% 10%; width: 100%;">
-            <div class="d-flex justify-content-center flex-column" style="margin: 0 10%; border: 2px solid black; box-shadow: 10px 10px 5px 5px lightblue; border-radius: 15px; width: 50%; height: 100vh;" id="sinsc">
-                <div class="d-flex justify-content-center align-items-center flex-column">
-                    <a href="index.html"><img src="logo.png" alt="" style="width: 100%; height: 100px;"></a>
-                    <h2 style="text-shadow: 0 0 3px black, 0 0 5px lightblue">register</h2>
-                </div>
-                <form action="" method="post" class="d-flex justify-content-center flex-column" style="padding: 5%;">
-                    <label for="name">username</label>
-                    <input type="text" name="username" id="name">
-                    <label for="email">E-mail</label>
-                    <input type="email" name="email" id="email">
-                    <label for="mdp">Password</label>
-                    <input type="password" name="mdp" id="mdp">
-                    <label for="phone">Phone</label>
-                    <input type="number" name="phone" id="phone">
-                    <label for="date">Date</label>
-                    <input type="date" name="date" id="date">
-                    <input name="submit" type="submit" value="S'INCRIRE" style="background-color: lightblue; border: none; margin-top: 10px;">
-                    <p>If you already have an account <a href="connexion.html">Se connecter</a></p>
-                </form>
+
+    <div class="container">
+        <div class="row border" style="border: 2px solid black; box-shadow: 10px 10px 5px 5px lightblue; border-radius: 15px; height: auto;margin: 5%;">
+            <div method="POST"  class="col-md-6 mx-auto" style="margin-top: 5%;">
+                <h3 class="text-center">Enter your information.</h3>
+                <form method="POST" class="row g-3 needs-validation" novalidate>
+                  <div class="form-floating mb-3">
+                    <input type="text" name="username" class="form-control" id="floatingInput" placeholder="name" required>
+                    <label for="floatingInput" class="form-label">Name</label>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+                  <div class="form-floating mb-2">
+                    <input type="email" name="email" class="form-control" id="validationCustom03" placeholder="e-mail" required>
+                    <label for="validationCustom03" class="form-label">E-mail</label>
+                    <div class="invalid-feedback">
+                      Please provide a valid city.
+                    </div>
+                  </div>
+                  <div class="form-floating mb-2">
+                    <input type="password" name="mdp"  class="form-control" id="validationCustom04" placeholder="password" required>
+                    <label for="validationCustom03" class="form-label">password</label>
+                    <div class="invalid-feedback">
+                      Please enter your password.
+                    </div>
+                  </div>
+                  <div class=" form-floating mb-2" >
+                    <input type="number" name="phone" class="form-control" id="validationCustom05" placeholder="phone" required>
+                    <label for="validationCustom05" class="form-label">Phone</label>
+                    <div class="invalid-feedback">
+                      Please provide a valid number.
+                    </div>
+                  </div>
+                  <div class="form-floating mb-2">
+                      <input type="date" name="date" class="form-control" id="validationCustom05" placeholder="date" required>
+                      <label for="validationCustom05" class="form-label">Date</label>
+                      <div class="invalid-feedback">
+                        Please provide a valid birthday date.
+                      </div>
+                    </div>
+                  <div class="form-group">
+                    <input name="envoyer" class="form-control" type="submit" value="S'INCRIRE" style="background-color: lightblue; border: none; margin-top: 10px;">
+                  </div>
+                  <p>If you already have an account <a href="<?php BASE_URL;?>connexion">Se connecter</a></p>
+
+                  </form>
+            </div>
+       
+        <div class="col-md-4 mx-auto">
+            <div class="d-flex justify-content-center align-items-center flex-column" style="margin: 50%;">
+              <a href="<?php BASE_URL;?>home"><img src="public/img/logo.png" alt=""></a>
+              <h2 style="text-shadow: 0 0 3px black, 0 0 5px lightblue">register</h2>
             </div>
         </div>
+      </div>
     </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict'
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+</script>
 </body>
 </html>

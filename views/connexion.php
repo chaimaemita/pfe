@@ -2,7 +2,6 @@
 	if(isset($_POST['submit'])){
 		$loginUser = new UsersController();
 		$loginUser->auth();
-        // echo 'sjssjs';
 	}
 ?>
 
@@ -40,7 +39,7 @@
         <div class="d-flex justify-content-around align-items-center" style="padding: 0 auto; width: 80%;">
             <div class="d-flex justify-content-center flex-column" style="margin: 0 auto; border: 2px solid black; box-shadow: 10px 10px 5px 12px lightblue; border-radius: 15px; width: 50%;" id="con">
                 <div class="d-flex justify-content-center align-items-center flex-column">
-                    <a href="index.html"><img src="logo.png" alt="" style="width: 100%; height: 100px;"></a>
+                    <a href="index.html"><img src="public/img/logo.png" alt="" style="width: 100%; height: 100px;"></a>
                     <h2 style="text-shadow: 0 0 3px black, 0 0 5px lightblue">register</h2>
                 </div>
                 <form action="" method="POST" class="d-flex justify-content-center flex-column" style="padding: 5%;">
@@ -53,7 +52,7 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remb">
                         <label class="form-check-label" for="exampleCheck1">Remember me</label>
                     </div>
-                    <p>If you don't have an account <a href="sinscrire.html">S'inscrire</a></p>
+                    <p>If you don't have an account <a href="<?php BASE_URL;?>sinscrire">S'inscrire</a></p>
                 </form>
             </div>
         </div>

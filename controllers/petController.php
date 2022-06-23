@@ -5,6 +5,7 @@ class PetController{
 	public function getAllPet(){
 		$pet = Pet::getAll();
 		return $pet;
+		
 	}
 
 	public function getAllPets(){
@@ -15,19 +16,13 @@ class PetController{
 	public function getOnePet(){
 		if(isset($_POST['id'])){
 			$data = array(
-				'id' => $_POST['id']
+				'pet' => $_POST['id']
 			);
 			$pet = Pet::getPet($data);
 			return $pet;
 		}
 	}
-	// public function findPet(){
-	// 	if(isset($_POST['search'])){
-	// 		$data = array('search' => $_POST['search']);
-	// 	}
-	// 	$employes = Employe::searchEmploye($data);
-	// 	return $employes;
-	// } 
+	
 
 	public function addPet(){
 		if(isset($_POST['add'])){
@@ -49,11 +44,12 @@ class PetController{
 	public function updatePet(){
 		if(isset($_POST['update'])){
 			$data = array(
-				'id' => $_POST['id'],
+				'pet' => $_POST['id'],
 				'nick_name' => $_POST['nickname'],
 				'about_pet' => $_POST['disc'],
 				'age' => $_POST['date']
 			);
+			$_SESSION['nick_name'] = $data['nick_name'];
 			$result = Pet::update($data);
 			if($result === 'ok'){
 				Session::set('success','Employé Modifié');
@@ -66,7 +62,7 @@ class PetController{
 
 	public function deletePet(){
 		if(isset($_POST['id'])){
-			$data['id'] = $_POST['id'];
+			$data['pet'] = $_POST['id'];
 			$result = Pet::delete($data);
 			if($result === 'ok'){
 				Session::set('success','Employé Supprimé');
