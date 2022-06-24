@@ -83,7 +83,7 @@ $pro = $data->getAllProducts();
                                     style="padding-right: 3%;"></i>Shop</a></li>
                         <li class="nav-item ps-3 pb-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>profileclient"><i
                                     style="padding-right: 3%;" class="bi bi-file-person-fill"></i>Profile</a></li>
-                        <li class="ps-3" style="margin-top: 20%;"><a class="navbar-brand" href="<?php echo BASE_URL;?>logout"
+                        <li class="ps-3" style="margin-top: 20%;"><a class="navbar-brand" href="<?php echo BASE_URL;?>home"
                                 style=" border-radius: 5px; padding: 5px;" id="logout"><i style="padding-right: 3%;"
                                     class="bi bi-box-arrow-right"></i> LOG OUT</a></li>
                     </ul>

@@ -35,8 +35,8 @@
             </ul>
            <a href="#epet"><img src="public/img/logo.png" alt="logo" style="width: 70%;"></a>
             <ul class="d-flex justify-content-between" style="text-decoration: none; list-style: none;">
-                <li><a class="navbar-brand" href="<?php echo BASE_URL;?>connexion">Se connecter</a></li>
-                <li><a class="navbar-brand" href="<?php echo BASE_URL;?>sinscrire">S'inscrire</a></li>
+                <li><a class="navbar-brand" href="<?php echo BASE_URL;?>connexion">Sign in</a></li>
+                <li><a class="navbar-brand" href="<?php echo BASE_URL;?>sinscrire">Sign up</a></li>
             </ul>
         </div>
     </nav>
@@ -45,10 +45,10 @@
             <div class="col-6" >
                 <h2 class="w-50">Not only people need a house</h2>
                 <p class="w-50">If u r thinking of bringing a cat or a dog,... or their needs welcome to our website.</p>
-                <input class="w-25" type="button" value="MAKE A PET" style="height: 10%; background-color: black; color: #ffc3a0; border-radius: 30px; outline: none; border: none;">
+                <a class="navbar-brand" href="<?php echo BASE_URL;?>sinscrire"><input class="w-25" type="button" value="GET A PET" style="height: 10%; background-color: black; color: #ffc3a0; border-radius: 30px; outline: none; border: none;"></a>
             </div>
             <div class="col-6">
-                <img src="pets.png" class="h-75" alt="image">
+                <img src="public/img/pets.png" class="h-75" alt="image">
             </div>
         </div>
     </div>
@@ -66,10 +66,10 @@
                 well-being very seriously. We hope to become your 
                 favorite 1-stop online pet store, where you find quality
                  products at unbeatable prices.</p>
-            <div class="d-flex">
-                <input type="button" class="fw-bold" value="SIGN IN" style="width: 25%; border: none; border-radius: 30px; height: 35px;">
+            <!-- <div class="d-flex">
+                <a href="<?php echo BASE_URL;?>sinscrire"><input type="button" class="fw-bold" value="SIGN IN" style="width: 25%; border: none; border-radius: 30px; height: 35px;"></a>
                 <input type="button" class="fw-bold" value="SIGN UP" style="width: 25%; border: 1px solid black; border-radius: 30px; height: 35px; margin-left: 10%;">
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

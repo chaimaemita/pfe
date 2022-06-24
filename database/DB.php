@@ -2,7 +2,6 @@
 
 class DB
 {
-
     static public function connect()
     {
         $db = new PDO("mysql:host=localhost;dbname=e-pet", "root", "");

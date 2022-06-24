@@ -35,7 +35,7 @@ $pets = $data->getOnePet();
             background-color: #DFEBE9;
         }
 
-        #resp {
+        /* #resp {
             display: none !important;
         }
 
@@ -52,7 +52,7 @@ $pets = $data->getOnePet();
             #resp {
                 display: block !important;
             }
-        }
+        } */
     </style>
 </head>
 
@@ -85,7 +85,7 @@ $pets = $data->getOnePet();
                                     style="padding-right: 3%;"></i>Shop</a></li>
                         <li class="nav-item ps-3 pb-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>profileclient"><i
                                     style="padding-right: 3%;" class="bi bi-file-person-fill"></i>Profile</a></li>
-                        <li class="ps-3" style="margin-top: 20%;"><a class="navbar-brand" href="<?php echo BASE_URL;?>logout"
+                        <li class="ps-3" style="margin-top: 20%;"><a class="navbar-brand" href="<?php echo BASE_URL;?>home"
                                 style=" border-radius: 5px; padding: 5px;" id="logout"><i style="padding-right: 3%;"
                                     class="bi bi-box-arrow-right"></i> LOG OUT</a></li>
                     </ul>
@@ -142,7 +142,7 @@ $pets = $data->getOnePet();
 
             </div>
     <!-- responsive -->
-    <div class="container-fluid d-flex flex-column" style="margin-top: 30%;" id="resp">
+    <!-- <div class="container-fluid d-flex flex-column" style="margin-top: 30%;" id="resp">
         <p class="card-text text-center">Hello there can you adopt me. I have no home.</p>
         <div class="card d-flex justify-content-center align-items-center">
             <img src="public/img/puppy.webp" class="card-img-top" alt="...">
@@ -155,7 +155,7 @@ $pets = $data->getOnePet();
                     style="background-color: #bfe6ba;">ADOPTE</a>
             </div>
         </div>
-    </div>
+    </div> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

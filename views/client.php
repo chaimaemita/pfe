@@ -101,7 +101,7 @@ $id = $_SESSION["id"];
                                     style="padding-right: 3%;"></i>Shop</a></li>
                         <li class="nav-item ps-3 pb-3"><a class="navbar-brand" href="<?php echo BASE_URL;?>profileclient"><i
                                     style="padding-right: 3%;" class="bi bi-file-person-fill"></i>Profile</a></li>
-                        <li class="ps-3" style="margin-top: 20%;"><a class="navbar-brand" href="<?php echo BASE_URL;?>logout"
+                        <li class="ps-3" style="margin-top: 20%;"><a class="navbar-brand" href="<?php echo BASE_URL;?>home"
                                 style=" border-radius: 5px; padding: 5px;" id="logout"><i style="padding-right: 3%;"
                                     class="bi bi-box-arrow-right"></i> LOG OUT</a></li>
                     </ul>
@@ -117,7 +117,7 @@ $id = $_SESSION["id"];
             </div>
             <div class="d-flex flex-column">
                 <p class="w-75" id="parag" style="font-size: 18px; padding-left: 20%;"><span
-                        class="fw-bold">E-pet.com</span> is one of moroccan's leading online pet
+                        class="fw-bold">E-pet</span> is one of moroccan's leading online pet
                     stores. offering the highets quality over-the-counter pet
                     medications. We understand the special bond
                     between you and your pet and take their health and
@@ -132,30 +132,21 @@ $id = $_SESSION["id"];
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card d-flex justify-content-center align-items-center">
-                <img src="public/img/puppy.webp" class="card-img-top" alt="...">
+                <img src="public/img/dogwelcom.png" class="card-img-top" alt="...">
                 <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                    <h5 class="card-title">JOE <i class="bi bi-heart"></i></h5>
+                    <h5 class="card-title">Our pets <i class="bi bi-heart"></i></h5>
                     <p class="card-text text-center">Hello there can you adopt me. I have no home.</p>
-                    <a href="petsposts.html" class="btn w-100" style="background-color: #bfe6ba;">See</a>
+                    <a href="<?php BASE_URL;?>petsposts" class="btn w-100" style="background-color: #bfe6ba;">See</a>
                 </div>
             </div>
         </div>
         <div class="col-md-4 mx-auto">
             <div class="card d-flex justify-content-center align-items-center">
-                <img src="public/img/wetfood.jpg" class="card-img-top" alt="..." width="80" height="300">
+                <img src="public/img/wetfood.jpg" class="card-img-top" alt="..." width="100" height="365">
                 <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                    <h5 class="card-title">FIZZO <i class="bi bi-heart-fill"></i></h5>
-                    <a href="petsposts.html" class="btn w-100" style="background-color: #bfe6ba;">See</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mx-auto">
-            <div class="card d-flex justify-content-center align-items-center">
-                <img src="public/img/dog.jpg" class="card-img-top" alt="...">
-                <div class="card-body d-flex justify-content-center align-items-center flex-column">
-                    <h5 class="card-title">COCO <i class="bi bi-suit-heart"></i></h5>
-                    <p class="card-text">Hello there can you adopt me. I have no home.</p>
-                    <a href="petsposts.html" class="btn w-100" style="background-color: #bfe6ba;">See</a>
+                    <h5 class="card-title">Our shop <i class="bi bi-heart"></i></h5>
+                    <p class="card-text text-center">Hello there can you adopt me. I have no home.</p>
+                    <a href="<?php BASE_URL;?>shop" class="btn w-100" style="background-color: #bfe6ba;">See</a>
                 </div>
             </div>
         </div>
