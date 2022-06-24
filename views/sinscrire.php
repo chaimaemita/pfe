@@ -51,10 +51,16 @@
 <body>
 
     <div class="container">
-        <div class="row border" style="border: 2px solid black; box-shadow: 10px 10px 5px 5px lightblue; border-radius: 15px; height: auto;margin: 5%;">
-            <div method="POST"  class="col-md-6 mx-auto" style="margin-top: 5%;">
+        <div class="row border" style="border: 2px solid black; box-shadow: 10px 10px 5px 5px lightblue; border-radius: 15px; height: auto; margin: 5%;">
+            <div class="col-md-4 mx-auto">
+                <div class="d-flex justify-content-center align-items-center flex-column" style="padding-top: 50%;">
+                  <a href="<?php BASE_URL;?>home"><img src="public/img/logo.png" alt=""></a>
+                  <h2 style="text-shadow: 0 0 3px black, 0 0 5px lightblue">register</h2>
+                </div>
+            </div>
+            <div class="col-md-6 mx-auto" style="margin-top: 5%;">
                 <h3 class="text-center">Enter your information.</h3>
-                <form method="POST" class="row g-3 needs-validation" novalidate>
+                <form method="POST" class="row g-1 needs-validation" novalidate>
                   <div class="form-floating mb-3">
                     <input type="text" name="username" class="form-control" id="floatingInput" placeholder="name" required>
                     <label for="floatingInput" class="form-label">Name</label>
@@ -66,7 +72,7 @@
                     <input type="email" name="email" class="form-control" id="validationCustom03" placeholder="e-mail" required>
                     <label for="validationCustom03" class="form-label">E-mail</label>
                     <div class="invalid-feedback">
-                      Please provide a valid city.
+                      Please provide a valid e-mail.
                     </div>
                   </div>
                   <div class="form-floating mb-2">
@@ -77,7 +83,7 @@
                     </div>
                   </div>
                   <div class=" form-floating mb-2" >
-                    <input type="number" name="phone" class="form-control" id="validationCustom05" placeholder="phone" required>
+                    <input type="text" name="phone" class="form-control" id="validationCustom05" placeholder="phone" required>
                     <label for="validationCustom05" class="form-label">Phone</label>
                     <div class="invalid-feedback">
                       Please provide a valid number.
@@ -98,12 +104,7 @@
                   </form>
             </div>
        
-        <div class="col-md-4 mx-auto">
-            <div class="d-flex justify-content-center align-items-center flex-column" style="margin: 50%;">
-              <a href="<?php BASE_URL;?>home"><img src="public/img/logo.png" alt=""></a>
-              <h2 style="text-shadow: 0 0 3px black, 0 0 5px lightblue">register</h2>
-            </div>
-        </div>
+        
       </div>
     </div>
     

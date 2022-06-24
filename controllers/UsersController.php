@@ -33,19 +33,49 @@ class UsersController {
 			];
 			$password = password_hash($_POST['mdp'],PASSWORD_BCRYPT,$options);
 			$data = array(
-				'user_name' => $_POST['username'],
-				'email' => 	$_POST['email'],	
+				'user_name' => trim($_POST['username']),
+				'email' => 	trim($_POST['email']),	
 				'password' => $password,
-				'phone' => 	$_POST['phone'],	
-				'date' => $_POST['date']	
+				'phone' => 	trim($_POST['phone']),	
+				'date' => trim($_POST['date']),
+				'username_err' => '',
+				'email_err' => '',
+				'password_err'=>'',
+				'phone_err'=>'',
+				'date_err'=>''
 			);
-			$result = User::createUser($data);
-			if($result === 'ok'){
-				Session::set('success','Compte crée');
-				Redirect::to('connexion');
-			}else{
-				echo $result;
+
+			// Validation 
+			if(empty($data['user_name'])){
+				$data['username_err'] = 'Please Enter Name';
 			}
+			if(empty($data['email'])){
+				$data['email_err'] = 'Please Enter Email';
+			}
+			if(empty($data['password'])){
+				$data['password_err'] = 'Please Enter Password';
+			}
+			if(empty($data['phone'])){
+				$data['phone_err'] = 'Please Enter Phone';
+			}
+			if(empty($data['date'])){
+				$data['date_err'] = 'Please Enter Date';
+			}
+
+
+			if(empty($data['username_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['phone_err']) &&  empty($data['date_err'])){
+				$result = User::createUser($data);
+				if($result === 'ok'){
+					Session::set('success','Compte crée');
+					Redirect::to('connexion');
+				}else{
+					echo $result;
+				}
+			}else{
+				die('Something went wrong');
+			}
+		}else{
+			Redirect::to('home');
 		}
 	}
 	
